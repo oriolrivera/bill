@@ -41,37 +41,17 @@
 #$route['default_controller'] = "welcome";
 #$route['404_override'] = '';
 
-$route['default_controller'] = 'frontend/index';
+$route['default_controller'] = 'frontend/index/login';
 $route['404_override'] = 'backend/error404';
 
-/* Rutas para Frontend y Backend */
-$route['backend'] = 'backend/panel';
-$route['backend/(:any)'] = 'backend/$1';
-$route['(:any)'] = 'frontend/$1';
-
-
-$route['contact'] = 'frontend/index/contact';
-$route['frontend/page/index/(:any)'] = 'frontend/page/index/$1';
-
-$route['backend/login'] = 'backend/panel/login';
-$route['backend/logout'] = 'backend/panel/logout';
-
-
-/*$route['backend/pageinfo'] = 'backend/panel/pageinfo';
-$route['backend/addpageinfo'] = 'backend/panel/addpageinfo';
-$route['backend/addmenu'] = 'backend/menu/addmenu';
-$route['backend/addcategori'] = 'backend/categori/addcategori';
-$route['backend/managermenu'] = 'backend/menu/managermenu';
-$route['backend/managercategori'] = 'backend/categori/managercategori';
-$route['backend/managerconfig'] = 'backend/setting/managerconfig';
-$route['backend/addusersystem'] = 'backend/panel/addusersystem';
-$route['backend/managerslider'] = 'backend/slider/managerslider';
-$route['backend/addslider'] = 'backend/slider/addslider';
-
-
-$route['sitemap.xml'] = 'sitemap/index';*/
+$route['frontend/login'] = 'frontend/index/login';
+//$route['index'] = 'frontend/index';
+$route['panel'] = 'frontend/index/panel';
+$route['logout'] = 'frontend/index/logout';
 
 
 
-/* End of file routes.php */
-/* Location: ./application/config/routes.php */
+
+
+
+
