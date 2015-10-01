@@ -15,7 +15,8 @@
 	<!-- Bootstrap core CSS -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/css/bootstrap/bootstrap.css" /> 
 
-	
+	 <!-- datatables Styling  -->
+    <link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/css/plugins/datatables/jquery.dataTables.css" />
     
     <!-- Fonts  -->
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,500,600,700,300' rel='stylesheet' type='text/css'>
@@ -72,14 +73,40 @@
             
             <nav class="navigation">
             	<ul class="list-unstyled">
-                	<li class="active"><a href="<?php echo base_url(); ?>/bill/panel"><i class="fa fa-bookmark-o"></i><span class="nav-label">Panel</span></a></li>
-                    <li class="has-submenu"><a href="#"><i class="fa fa-comment-o"></i> <span class="nav-label">Widgets &amp; Apps</span></a>
+                  <li class="active">
+                    <a href="<?php echo base_url(); ?>/bill/panel"><i class="fa fa-bookmark-o"></i><span class="nav-label">Panel</span></a>
+                  </li>	
+
+                  <li class="has-submenu"><a href="#"><i class="fa fa-comment-o"></i> <span class="nav-label">Gestor de Clientes</span></a>
+                      <ul class="list-unstyled">
+                          <li><a href="<?php echo base_url(); ?>client/clients">Clientes</a></li>
+                          <li><a href="<?php echo base_url(); ?>client/addclient">Crear Cliente</a></li>
+                          <li><a href="#">Presupuesto a Clientes</a></li>
+                          
+                        </ul>
+                    </li>
+
+                  
+                  <li>
+                    <a href="<?php echo base_url(); ?>/bill/panel"><i class="fa fa-bookmark-o"></i><span class="nav-label">Servicios</span></a>
+                  </li>  
+
+                  <li>
+                    <a href="<?php echo base_url(); ?>/bill/panel"><i class="fa fa-bookmark-o"></i><span class="nav-label">Suplidor</span></a>
+                  </li>
+                  
+                  <li class="has-submenu"><a href="#"><i class="fa fa-comment-o"></i> <span class="nav-label">Facturas</span></a>
+                      <ul class="list-unstyled">
+                          <li><a href="#">Crear Factura</a></li>
+                          <li><a href="#">Factura Pendiente por pagar</a></li>
+                      
+                        </ul>
+                  </li>
+
+                    <li class="has-submenu"><a href="#"><i class="fa fa-comment-o"></i> <span class="nav-label">Configuracion</span></a>
                     	<ul class="list-unstyled">
-                        	<li><a href="email.html">Email</a></li>
-                            <li><a href="timeline.html">Timeline</a></li>
-                            <li><a href="calendar.html">Calendar</a></li>
-                            <li><a href="notes.html">Notes</a></li>
-                            <li><a href="file-browser.html">File Browser</a></li>
+                        	<li><a href="#">Crear usuario del sistema</a></li>
+                          
                         </ul>
                     </li>
 
@@ -159,7 +186,11 @@
     
     <!-- NanoScroll -->
     <script src="<?php echo base_url(); ?>public/assets/js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
-    
+
+    <!-- Data Table -->
+     <script src="<?php echo base_url(); ?>public/assets/js/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="<?php echo base_url(); ?>public/assets/js/plugins/datatables/DT_bootstrap.js"></script>
+      <script src="<?php echo base_url(); ?>public/assets/js/plugins/datatables/jquery.dataTables-conf.js"></script>
    
   
    

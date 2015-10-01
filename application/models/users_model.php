@@ -60,7 +60,6 @@ class users_model extends CI_Model
 			
 			break;
 			
-			
 		}
 	}#end
 

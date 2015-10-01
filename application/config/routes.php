@@ -41,13 +41,13 @@
 #$route['default_controller'] = "welcome";
 #$route['404_override'] = '';
 
-$route['default_controller'] = 'frontend/index/login';
-$route['404_override'] = 'backend/error404';
+$route['default_controller'] = 'index/login';
+$route['404_override'] = 'error404';
 
-$route['frontend/login'] = 'frontend/index/login';
-//$route['index'] = 'frontend/index';
-$route['panel'] = 'frontend/index/panel';
-$route['logout'] = 'frontend/index/logout';
+$route['login'] = 'index/login';
+//$route['index'] = 'index';
+$route['panel'] = 'index/panel';
+$route['logout'] = 'index/logout';
 
 
 
