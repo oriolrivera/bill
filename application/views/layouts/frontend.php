@@ -74,7 +74,7 @@
             <nav class="navigation">
             	<ul class="list-unstyled">
                   <li class="active">
-                    <a href="<?php echo base_url(); ?>/bill/panel"><i class="fa fa-bookmark-o"></i><span class="nav-label">Panel</span></a>
+                    <a href="<?php echo base_url(); ?>panel"><i class="fa fa-bookmark-o"></i><span class="nav-label">Panel</span></a>
                   </li>	
 
                   <li class="has-submenu"><a href="#"><i class="fa fa-comment-o"></i> <span class="nav-label">Gestor de Clientes</span></a>
@@ -88,16 +88,17 @@
 
                   
                   <li>
-                    <a href="<?php echo base_url(); ?>/bill/panel"><i class="fa fa-bookmark-o"></i><span class="nav-label">Servicios</span></a>
+                    <a href="<?php echo base_url(); ?>services/managerservices"><i class="fa fa-bookmark-o"></i><span class="nav-label">Servicios</span></a>
                   </li>  
-
+<!-- 
                   <li>
                     <a href="<?php echo base_url(); ?>/bill/panel"><i class="fa fa-bookmark-o"></i><span class="nav-label">Suplidor</span></a>
-                  </li>
+                  </li> -->
                   
-                  <li class="has-submenu"><a href="#"><i class="fa fa-comment-o"></i> <span class="nav-label">Facturas</span></a>
+                  <li class="has-submenu"><a href="#"><i class="fa fa-comment-o"></i> <span class="nav-label">Gestor de Facturas</span></a>
                       <ul class="list-unstyled">
-                          <li><a href="#">Crear Factura</a></li>
+                          <li><a href="<?php echo base_url(); ?>invoice/invoices">Facturas</a></li>
+                          <li><a href="<?php echo base_url(); ?>invoice/newinvoice">Crear Factura</a></li>
                           <li><a href="#">Factura Pendiente por pagar</a></li>
                       
                         </ul>
@@ -195,7 +196,24 @@
   
    
     <!-- Custom JQuery -->
-	<script src="<?php echo base_url(); ?>public/assets/js/app/custom.js" type="text/javascript"></script>
+  <script src="<?php echo base_url(); ?>public/assets/js/app/custom.js" type="text/javascript"></script>
+  <script src="<?php echo base_url(); ?>public/assets/js/bootstrap/bootstrap-datepicker.js"></script>
+	<script src="<?php echo base_url(); ?>public/assets/js/scripts.js" type="text/javascript"></script>
+
+  <script>
+
+    fs_nf0 = 2;
+   all_impuestos = [{"codimpuesto":"ITBIS18","codsubcuentarep":null,"codsubcuentasop":null,"descripcion":"ITBIS 18%","iva":18,"recargo":0}];
+   //cliente = {"codcliente":"000088","nombre":"test","razonsocial":"test","cifnif":"132213","telefono1":"1232","telefono2":"","fax":"","email":"","web":"","codserie":"A","coddivisa":"USD","codpago":"CONT","codagente":null,"codgrupo":null,"debaja":false,"fechabaja":null,"fechaalta":"07-10-2015","observaciones":"","regimeniva":"General","recargo":false};
+  
+   
+   $(document).ready(function() {
+      usar_serie();
+      recalcular();
+   });
+
+
+  </script>
   
 </body>
 </html>
