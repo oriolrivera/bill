@@ -36,7 +36,7 @@
              </label>
              Remember me
            </div> -->
-        	  <button type="submit" class="btn btn-purple btn-block">Iniciar sesión</button>
+        	  <button type="submit" class="btn btn-info">Iniciar sesión</button>
            <?php echo form_close();?>
 
 

@@ -23,16 +23,18 @@
                                 
                             </thead>
                             <tbody>
-                            	<?php for ($i=0; $i <10 ; $i++) {  ?>                            	
+                            	<?php 
+                            		foreach ($results as $result) {
+                            		?>                            	
 	                                <tr class="odd gradeX">
-	                                <td><input type="checkbox" name="delete[]" value="<?php echo $i; ?>"></td>
-	                                    <td>Código</td>
-	                                    <td>Nombre</td>
-	                                    <td>CIF/NIF</td>
-	                                    <td>email</td>
-	                                    <td>Teléfono</td>
-	                                    <td class="center">Observaciones</td>
-	                                    <td class="center"><a href="" class="btn btn-info btn-circle btn-flat"><i class="fa fa-pencil-square-o"></i></a></td>
+	                                <td><input type="checkbox" name="delete[]" value="<?php echo $result->id; ?>"></td>
+	                                    <td><?php echo $result->id; ?></td>
+	                                    <td><?php echo $result->name; ?></td>
+	                                    <td><?php echo $result->cif_nif; ?></td>
+	                                    <td><?php echo $result->email; ?></td>
+	                                    <td><?php echo $result->phone_one; ?></td>
+	                                    <td class="center"><?php echo $result->observation; ?></td>
+	                                    <td class="center"><a href="<?php echo base_url(); ?>client/editclient/<?php echo $result->id; ?>" class="btn btn-info btn-circle btn-flat"><i class="fa fa-pencil-square-o"></i></a></td>
 	                                </tr>
                                 <?php } ?>
                             </tbody>

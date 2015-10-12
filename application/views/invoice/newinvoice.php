@@ -16,21 +16,31 @@
    </script>
 
 
-<form id="f_new_albaran" class="form" name="f_new_albaran" action="index.php?page=nueva_venta&amp;tipo=factura" method="post">
-   <input type="hidden" name="petition_id" value="D3qjpC9UbVYRPxeAgHkOFursJ5TGo8">
-   <input type="hidden" id="numlineas" name="numlineas" value="2">
-   <input type="hidden" name="cliente" value="000088">
-   <input type="hidden" name="redir">
+<!-- <form id="f_new_albaran" class="form" name="f_new_albaran" action="index.php?page=nueva_venta&amp;tipo=factura" method="post"> -->
+<?php echo form_open(null,array("name"=>"form","id"=>"form"));?>
+   
    <div class="container-fluid">
       <div class="row">
          <div class="col-sm-8">
-            <h1 style="margin-top: 5px;">
-               <a href="index.php?page=ventas_cliente&amp;cod=000088">test</a>
-            </h1>
+         <div class="col-sm-7">
+
+         <div class="form-group">
+                <i class="fa fa-user"></i>  Cliente:
+            <select name="client" id="" class="form-control" >
+                  <option value=" ">Selecciona Cliente</option>
+                  <?php 
+                     foreach ($results as $result) {
+                     ?>  
+                  <option value="<?php echo $result->id; ?>"><?php echo $result->name; ?></option>
+                  <?php } ?>
+            </select>
+          </div>
+           
+         </div>
          </div>
          <div class="col-sm-2">
             <div class="form-group">
-               Fecha:
+               Fecha del servicio:
                <input type="text" name="fecha" class="form-control datepicker" value="<?php echo date("d-m-Y"); ?>" autocomplete="off">
             </div>
          </div>
@@ -87,13 +97,7 @@
                   <tbody>
                      <tr class="">
                         <td>
-                        <!--    <select name="add_services" id="add_services" class="form-control">
-                           <option value="">Seleccione servicio</option>
-                           <option value="1">Programacion modulo</option>
-                           <option value="2">Programacion web</option>
-                           <option value="3">Programacion app movil</option>
-                        </select> -->
-             <!--                 <input id="i_new_line" class="btn" type="button" placeholder="Buscar para añadir..." autocomplete="off">  -->
+                      
                              <button class="btn btn-green" type="button" id="i_new_line"><i class="fa fa-search-plus"></i> Buscar para añadir</button>
                         </td>
                         <td>
@@ -104,12 +108,15 @@
                         <td colspan="4" class="text-right">Totales:</td>
                         <td>  
                            <div id="aneto" class="form-control text-right" style="font-weight: bold;">0.00</div>
+                           <input type="hidden" name="aneto_input" id='aneto_input'>
                         </td>
                         <td>
                            <div id="aiva" class="form-control text-right" style="font-weight: bold;">0.00</div>
+                           <input type="hidden" name="aiva_input" id='aiva_input'>
                         </td>
                         <td class="recargo" style="display: none;">
                            <div id="are" class="form-control text-right" style="font-weight: bold;">0.00</div>
+                           
                         </td>
                         <td class="irpf" style="display: none;">
                            <div id="airpf" class="form-control text-right" style="font-weight: bold;">-0.00</div>
@@ -258,9 +265,9 @@
    <div class="container-fluid" style="margin-top: 10px;">
       <div class="row">
          <div class="col-sm-6">
-            <button class="btn btn-sm btn-default" type="button" onclick="window.location.href='index.php?page=nueva_venta&amp;tipo=factura';">
-               <span class="glyphicon glyphicon-refresh"></span> &nbsp; Reiniciar
-            </button>
+            <a class="btn btn-sm btn-default" href="<?php echo base_url(); ?>invoice/invoices">
+               <span class="fa fa-chevron-left"></span> &nbsp; Salir
+            </a>
          </div>
          <div class="col-sm-6 text-right">
             <button class="btn btn-sm btn-primary" type="button" onclick="$('#modal_guardar').modal('show');">
@@ -284,10 +291,7 @@
             <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                <h4 class="modal-title">Guardar como...</h4>
-               <p class="help-block">
-                  Puedes programar ventas usando el plugin
-                  <a href="https://www.facturascripts.com/store/producto/plugin-para-programar-albaranes/" target="_blank">albaranes programados</a>.
-               </p>
+           
             </div>
             <div class="modal-body">
                
@@ -318,15 +322,7 @@
                      Factura de cliente
                   </label>
                </div>
-               
-               <div class="form-group">
-                  <span class="text-capitalize">número 2:</span>
-                  <input class="form-control" type="text" name="numero2" autocomplete="off">
-                  <p class="help-block">
-                     Puedes usar este campo como desées. Incluso puedes cambiarle el nombre
-                     desde Admin &gt; Panel de control &gt; Avanzado.
-                  </p>
-               </div>
+            
                <div class="form-group">
                   <a href="index.php?page=contabilidad_formas_pago">Forma de pago</a>:
                   <select name="forma_pago" class="form-control">
@@ -340,34 +336,26 @@
                      
                   
                      
-                     <option value="GIRE_30">GIRO A 30 DIAS FF</option>
+                     <option value="GIRE_30">GIRO A 30 DIAS</option>
                      
                   
                   </select>
                </div>
             </div>
             <div class="modal-footer">
-               <div class="pull-left">
-                  <div class="checkbox">
-                     <label>
-                        <input type="checkbox" name="stock" value="TRUE" checked="checked">
-                        Descontar de stock
-                     </label>
-                  </div>
-               </div>
+             
                <div class="btn-group">
-                  <button class="btn btn-sm btn-primary" type="button" onclick="this.disabled=true;this.form.submit();" title="Guardar y volver a empezar">
+                  <button class="btn btn-sm btn-primary" type="submit">
                      <span class="glyphicon glyphicon-floppy-disk"></span> &nbsp; Guardar
                   </button>
-                  <button class="btn btn-sm btn-info" type="button" onclick="this.disabled=true;document.f_new_albaran.redir.value='TRUE';this.form.submit();" title="Guardar y ver documento">
-                     <span class="glyphicon glyphicon-eye-open"></span>
-                  </button>
+             
                </div>
             </div>
          </div>
       </div>
    </div>
-</form>
+
+<?php echo form_close();?>
 
 
 

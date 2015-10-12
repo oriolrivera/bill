@@ -121,7 +121,9 @@ function recalcular()
    total_irpf = fs_round(total_irpf, fs_nf0);
    total_recargo = fs_round(total_recargo, fs_nf0);
    $("#aneto").html( show_numero(neto) );
+   $("#aneto_input").val( show_numero(neto) );
    $("#aiva").html( show_numero(total_iva) );
+   $("#aiva_input").val( show_numero(total_iva) );
    $("#are").html( show_numero(total_recargo) );
    $("#airpf").html( '-'+show_numero(total_irpf) );
    $("#atotal").val( neto + total_iva - total_irpf + total_recargo );
@@ -283,7 +285,7 @@ function aux_all_impuestos(num,codimpuesto)
       }
    }
    
-   var html = "<td><select id=\"iva_"+num+"\" class=\"form-control\" name=\"iva_"+num+"\" onchange=\"ajustar_iva('"+num+"')\">";
+   var html = "<td><select id=\"iva_"+num+"\" class=\"form-control\" name=\"iva[]\" onchange=\"ajustar_iva('"+num+"')\">";
    for(var i=0; i<all_impuestos.length; i++)
    {
       if(iva == all_impuestos[i].iva)
@@ -310,21 +312,18 @@ function add_articulo(ref,desc,pvp,dto,codimpuesto,cantidad)
    $("#lineas_albaran").append("<tr id=\"linea_"+numlineas+"\">\n\
       <td><input type=\"hidden\" name=\"idlinea_"+numlineas+"\" value=\"-1\"/>\n\
          <input type=\"hidden\" name=\"referencia_"+numlineas+"\" value=\""+ref+"\"/>\n\
-         <div class=\"form-control\"><a target=\"_blank\" href=\"index.php?page=ventas_articulo&ref="+ref+"\">"+ref+"</a></div></td>\n\
-      <td><textarea class=\"form-control\" id=\"desc_"+numlineas+"\" name=\"desc_"+numlineas+"\" rows=\"1\" onclick=\"this.select()\">"+desc+"</textarea></td>\n\
-      <td><input type=\"number\" step=\"any\" id=\"cantidad_"+numlineas+"\" class=\"form-control text-right\" name=\"cantidad_"+numlineas+
-         "\" onchange=\"recalcular()\" onkeyup=\"recalcular()\" autocomplete=\"off\" value=\""+cantidad+"\"/></td>\n\
+         <div class=\"form-control\"><a target=\"_blank\" href=\""+ref+"\">"+ref+"</a></div></td>\n\
+      <td><textarea class=\"form-control\" id=\"desc_"+numlineas+"\" name=\"desc[]\" rows=\"1\" onclick=\"this.select()\">"+desc+"</textarea></td>\n\
+      <td><input type=\"number\" step=\"any\" id=\"cantidad_"+numlineas+"\" class=\"form-control text-right\" name=\"cantidad[]\" onchange=\"recalcular()\" onkeyup=\"recalcular()\" autocomplete=\"off\" value=\""+cantidad+"\"/></td>\n\
       <td><button class=\"btn btn-sm btn-danger\" type=\"button\" onclick=\"$('#linea_"+numlineas+"').remove();recalcular();\">\n\
          <span class=\"glyphicon glyphicon-trash\"></span></button></td>\n\
-      <td><input type=\"text\" class=\"form-control text-right\" id=\"pvp_"+numlineas+"\" name=\"pvp_"+numlineas+"\" value=\""+pvp+
+      <td><input type=\"text\" class=\"form-control text-right\" id=\"pvp_"+numlineas+"\" name=\"precio[]\" value=\""+pvp+
          "\" onkeyup=\"recalcular()\" onclick=\"this.select()\" autocomplete=\"off\"/></td>\n\
-      <td><input type=\"text\" id=\"dto_"+numlineas+"\" name=\"dto_"+numlineas+"\" value=\""+dto+
+      <td><input type=\"text\" id=\"dto_"+numlineas+"\" name=\"dto[]\" value=\""+dto+
          "\" class=\"form-control text-right\" onkeyup=\"recalcular()\" onclick=\"this.select()\" autocomplete=\"off\"/></td>\n\
-      <td><input type=\"text\" class=\"form-control text-right\" id=\"neto_"+numlineas+"\" name=\"neto_"+numlineas+
-         "\" onchange=\"ajustar_neto()\" onclick=\"this.select()\" autocomplete=\"off\"/></td>\n\
+      <td><input type=\"text\" class=\"form-control text-right\" id=\"neto_"+numlineas+"\" name=\"neto[]\" onchange=\"ajustar_neto()\" onclick=\"this.select()\" autocomplete=\"off\"/></td>\n\
       "+aux_all_impuestos(numlineas,codimpuesto)+"\n\
-      <td><input type=\"text\" class=\"form-control text-right\" id=\"total_"+numlineas+"\" name=\"total_"+numlineas+
-         "\" onchange=\"ajustar_total()\" onclick=\"this.select()\" autocomplete=\"off\"/></td></tr>");
+      <td><input type=\"text\" class=\"form-control text-right\" id=\"total_"+numlineas+"\" name=\"totalp[\" onchange=\"ajustar_total()\" onclick=\"this.select()\" autocomplete=\"off\"/></td></tr>");
    numlineas += 1;
    $("#numlineas").val(numlineas);
    recalcular();

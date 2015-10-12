@@ -17,20 +17,57 @@ class Client extends CI_Controller {
 			if($this->form_validation->run("addclient"))
 			{
 				#die("validado");
-				#`phone_one`,`phone_two`,`fax`,`email`,`web`,`buy`,`emplead_asigne`,`observation`
+				
+				
 					$querySave=array(
 							"name"=>$this->input->post("name",true),
 							"razon_social"=>$this->input->post("razonsocial",true),
 							"cif_nif"=>$this->input->post("cifnif",true),
 							"phone_one"=>$this->input->post("telefono1",true),
-							"phone_one"=>$this->input->post("telefono1",true),
-								
+							"phone_two"=>$this->input->post("telefono2",true),
+							"fax"=>$this->input->post("fax",true),
+							"email"=>$this->input->post("email",true),
+							"web"=>$this->input->post("web",true),
+							"observation"=>$this->input->post("observaciones",true),
 							"date_added"=>date("Y-m-d h:i:s"),
 					);
 
 					$saveIde=$this->client_model->addClient($querySave);
+
+					if ($this->input->post("dirfact",true)==true) {
+						$dirFact=$this->input->post("dirfact",true);
+					}else{
+						$dirFact=0;
+					}
+					
+					$querySaveClientBank=array(
+							"country"=>$this->input->post("pais",true),
+							"province"=>$this->input->post("provincia",true),
+							"city"=>$this->input->post("ciudad",true),
+							"address"=>$this->input->post("direccion",true),
+							"code_zip"=>$this->input->post("codpostal",true),
+							"town"=>$this->input->post("municipio",true),
+							"billing_address"=>$dirFact,
+							"description"=>$this->input->post("descripcion",true),
+							"id_rel"=>$saveIde,
+							"date_added"=>date("Y-m-d h:i:s"),
+						);
+
+					$this->client_model->addClientBank($querySaveClientBank);
+					
+					if ($this->input->post("banco",true)) {
+				
+						$querySaveClientBankAccount=array(
+								"back"=>$this->input->post("banco",true),
+								"no_account"=>$this->input->post("nocuenta",true),
+								"id_rel_bank_account"=>$saveIde,
+							);
+
+						$this->client_model->addClientBankAccount($querySaveClientBankAccount);
+					}
+
 					$this->session->set_flashdata("mensaje","<div class='alert alert-success' role='alert'><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>Registro creado con éxito.</div>");
-					redirect(base_url()."client/clients");
+					redirect(base_url()."client/addclient");
 			}#end validation
 		}#end post
 
@@ -39,7 +76,9 @@ class Client extends CI_Controller {
     } 
 
     public function clients(){
-    	$this->layout->view("clients");
+    	$results=$this->client_model->getClients();
+    	$this->layout->setTitle("Gestor Clientes");
+    	$this->layout->view("clients", compact('results'));
     }
 
 }#end

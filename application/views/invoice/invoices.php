@@ -1,5 +1,5 @@
   <div class="pull-right">
-  	<a href="<?php echo base_url(); ?>client/addclient" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Nuevo Factura</a>
+  	<a href="<?php echo base_url(); ?>invoice/newinvoice" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Nuevo Factura</a>
   	<a href="" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i> Eliminar</a>
   </div>
   <br><br>

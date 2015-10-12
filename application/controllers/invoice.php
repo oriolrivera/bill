@@ -13,7 +13,16 @@ class Invoice extends CI_Controller {
     }
 
      public function newinvoice(){
-    	$this->layout->view("newinvoice");
+
+     	if($this->input->post())
+		{
+			print_r($_POST);
+		}#end post
+
+        $results=$this->client_model->getClients();
+
+        $this->layout->setTitle("Nueva Factura");
+    	$this->layout->view("newinvoice",compact('results'));
     }
 
 
