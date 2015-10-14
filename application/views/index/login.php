@@ -1,7 +1,7 @@
   <div class="container">
     	<div class="row">
     	<div class="col-lg-4 col-lg-offset-4">
-        	<h3 class="text-center">Sistema Facturación </h3>
+        	<h3 class="text-center"><img src="<?php echo base_url(); ?>public/assets/images/logo.jpg" alt="Sistema Facturación" width="200px"> </h3>
             <p class="text-center">Iniciar sesión</p>
             <hr class="clean">
 

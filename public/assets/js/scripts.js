@@ -99,7 +99,7 @@ function recalcular()
             $("#recargo_"+i).val(0);
          }
          
-         $("#neto_"+i).val( l_neto );
+         $("#neto_"+i).val(l_neto );
          if(numlineas == 1)
          {
             $("#total_"+i).val( fs_round(l_neto, fs_nf0) + fs_round(l_neto*(l_iva-l_irpf+l_recargo)/100, fs_nf0) );
@@ -121,7 +121,7 @@ function recalcular()
    total_irpf = fs_round(total_irpf, fs_nf0);
    total_recargo = fs_round(total_recargo, fs_nf0);
    $("#aneto").html( show_numero(neto) );
-   $("#aneto_input").val( show_numero(neto) );
+   $("#aneto_input").val(show_numero(neto));
    $("#aiva").html( show_numero(total_iva) );
    $("#aiva_input").val( show_numero(total_iva) );
    $("#are").html( show_numero(total_recargo) );
@@ -311,7 +311,7 @@ function add_articulo(ref,desc,pvp,dto,codimpuesto,cantidad)
    desc = Base64.decode(desc);
    $("#lineas_albaran").append("<tr id=\"linea_"+numlineas+"\">\n\
       <td><input type=\"hidden\" name=\"idlinea_"+numlineas+"\" value=\"-1\"/>\n\
-         <input type=\"hidden\" name=\"referencia_"+numlineas+"\" value=\""+ref+"\"/>\n\
+         <input type=\"hidden\" name=\"referencia[]\" value=\""+ref+"\"/>\n\
          <div class=\"form-control\"><a target=\"_blank\" href=\""+ref+"\">"+ref+"</a></div></td>\n\
       <td><textarea class=\"form-control\" id=\"desc_"+numlineas+"\" name=\"desc[]\" rows=\"1\" onclick=\"this.select()\">"+desc+"</textarea></td>\n\
       <td><input type=\"number\" step=\"any\" id=\"cantidad_"+numlineas+"\" class=\"form-control text-right\" name=\"cantidad[]\" onchange=\"recalcular()\" onkeyup=\"recalcular()\" autocomplete=\"off\" value=\""+cantidad+"\"/></td>\n\
@@ -323,7 +323,7 @@ function add_articulo(ref,desc,pvp,dto,codimpuesto,cantidad)
          "\" class=\"form-control text-right\" onkeyup=\"recalcular()\" onclick=\"this.select()\" autocomplete=\"off\"/></td>\n\
       <td><input type=\"text\" class=\"form-control text-right\" id=\"neto_"+numlineas+"\" name=\"neto[]\" onchange=\"ajustar_neto()\" onclick=\"this.select()\" autocomplete=\"off\"/></td>\n\
       "+aux_all_impuestos(numlineas,codimpuesto)+"\n\
-      <td><input type=\"text\" class=\"form-control text-right\" id=\"total_"+numlineas+"\" name=\"totalp[\" onchange=\"ajustar_total()\" onclick=\"this.select()\" autocomplete=\"off\"/></td></tr>");
+      <td><input type=\"text\" class=\"form-control text-right\" id=\"total_"+numlineas+"\" name=\"totalp[]\" onchange=\"ajustar_total()\" onclick=\"this.select()\" autocomplete=\"off\"/></td></tr>");
    numlineas += 1;
    $("#numlineas").val(numlineas);
    recalcular();

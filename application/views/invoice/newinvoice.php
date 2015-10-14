@@ -67,12 +67,12 @@
                <span class="hidden-xs">&nbsp; Dirección</span>
             </a>
          </li>
-         <li role="presentation">
-            <a href="#opciones" aria-controls="opciones" role="tab" data-toggle="tab">
-               <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
-               <span class="hidden-xs">&nbsp; Opciones</span>
-            </a>
-         </li>
+      <!--    <li role="presentation">
+         <a href="#opciones" aria-controls="opciones" role="tab" data-toggle="tab">
+            <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
+            <span class="hidden-xs">&nbsp; Opciones</span>
+         </a>
+      </li> -->
       </ul>
       <div class="tab-content">
          <div role="tabpanel" class="tab-pane active" id="lineas">
@@ -265,14 +265,14 @@
    <div class="container-fluid" style="margin-top: 10px;">
       <div class="row">
          <div class="col-sm-6">
-            <a class="btn btn-sm btn-default" href="<?php echo base_url(); ?>invoice/invoices">
-               <span class="fa fa-chevron-left"></span> &nbsp; Salir
-            </a>
          </div>
          <div class="col-sm-6 text-right">
             <button class="btn btn-sm btn-primary" type="button" onclick="$('#modal_guardar').modal('show');">
                <span class="glyphicon glyphicon-floppy-disk"></span> &nbsp; Guardar...
             </button>
+            <a class="btn btn-sm btn-danger" href="<?php echo base_url(); ?>invoice/invoices">
+               <span class="fa fa-chevron-left"></span> &nbsp; Salir
+            </a>
          </div>
       </div>
       <div class="row">
@@ -290,53 +290,53 @@
          <div class="modal-content">
             <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-               <h4 class="modal-title">Guardar como...</h4>
+               <h4 class="modal-title">Guardar como</h4>
            
             </div>
             <div class="modal-body">
                
                <div class="radio">
                   <label>
-                     <input type="radio" name="tipo" value="presupuesto">
+                     <input type="radio" name="tipo" value="1">
                      Presupuesto para cliente
                   </label>
                </div>
                
                <div class="radio">
                   <label>
-                     <input type="radio" name="tipo" value="pedido">
+                     <input type="radio" name="tipo" value="2">
                      Pedido de cliente
                   </label>
                </div>
                
                <div class="radio">
                   <label>
-                     <input type="radio" name="tipo" value="albaran">
+                     <input type="radio" name="tipo" value="3">
                      Albarán de cliente
                   </label>
                </div>
                
                <div class="radio">
                   <label>
-                     <input type="radio" name="tipo" value="factura" checked="checked">
+                     <input type="radio" name="tipo" value="4" checked="checked">
                      Factura de cliente
                   </label>
                </div>
             
                <div class="form-group">
-                  <a href="index.php?page=contabilidad_formas_pago">Forma de pago</a>:
+                  <span>Forma de pago</span>:
                   <select name="forma_pago" class="form-control">
                   
                      
-                     <option value="CONT" selected="">CONTADO</option>
+                     <option value="1" selected="">CONTADO</option>
                      
                   
                      
-                     <option value="CUOTAS">CUOTAS</option>
+                     <option value="2">CUOTAS</option>
                      
                   
                      
-                     <option value="GIRE_30">GIRO A 30 DIAS</option>
+                     <option value="3">GIRO A 30 DIAS</option>
                      
                   
                   </select>
