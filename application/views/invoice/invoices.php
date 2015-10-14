@@ -61,7 +61,14 @@
 	                                <tr class="odd gradeX">
 	                                <td><input type="checkbox" name="delete[]" value="<?php echo $result->id_invoice; ?>"></td>
 	                                    <td><?php echo $result->id_invoice; ?></td>
-	                                    <td><?php echo $result->client; ?></td>
+	                                    <td>
+
+	                                    	<?php
+	                                    	$client=$this->client_model->getClientForIdInvoice($result->client); 
+	                                    		echo $client->name; 
+	                                    	?>
+
+	                                    </td>
 	                                    <td><?php echo $result->observation; ?></td>
 	                                    <td>$<?php echo number_format($result->atotal,2); ?></td>
 	                                    <td><?php echo date("d-m-Y",strtotime($result->date_added)); ?></td>

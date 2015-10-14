@@ -81,4 +81,13 @@ class Client extends CI_Controller {
     	$this->layout->view("clients", compact('results'));
     }
 
+    public function delete(){
+    	if($this->input->post("delete"))
+            {                               
+                 $this->client_model->delete();              
+            }else{
+                $this->session->set_flashdata("mensaje","<div class='alert alert-danger' role='alert'><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>Tiene que selecionar un registro a eliminar.</div>");
+                redirect(base_url()."client/clients");             
+        }
+    }#edn
 }#end

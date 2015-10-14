@@ -747,6 +747,12 @@ $(document).ready(function() {
       formg.submit();
     });
 
+    $("#delete-clients").click(function(){
+      var formg = $('#form');
+      formg.attr("action", route()+"delete");
+      formg.submit();
+    });
+
 /*
    $("body").on("change","#add_services", function(){
       var id = $(this).val();

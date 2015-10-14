@@ -29,7 +29,7 @@ class invoice_model extends CI_Model
 	}#end
 
 
-	public function deleteProduct(){
+	public function delete(){
 		$idsToDelete=$_POST["delete"];
 
 			    $delete = array('invoice');
@@ -44,8 +44,6 @@ class invoice_model extends CI_Model
 
 				$this->session->set_flashdata("mensaje","<div class='alert alert-success' role='alert'><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>Selección eliminada con éxito.</div>");
 				redirect(base_url()."invoice/invoices");
-
-
 	}#end
 
 

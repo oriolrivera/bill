@@ -103,7 +103,7 @@ class Invoice extends CI_Controller {
        
         if($this->input->post("delete"))
             {                               
-                 $this->invoice_model->deleteProduct();              
+                 $this->invoice_model->delete();              
             }else{
                 $this->session->set_flashdata("mensaje","<div class='alert alert-danger' role='alert'><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>Tiene que selecionar un registro a eliminar.</div>");
                 redirect(base_url()."invoice/invoices");             
