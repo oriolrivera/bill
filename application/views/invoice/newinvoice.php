@@ -100,11 +100,11 @@
                       
                              <button class="btn btn-green" type="button" id="i_new_line"><i class="fa fa-search-plus"></i> Buscar para añadir</button>
                         </td>
-                        <td>
+                        <!-- <td>
                            <a href="#" class="btn btn-sm btn-default" title="Añadir sin buscar" onclick="return add_linea_libre()">
                               <span class="fa fa-plus" aria-hidden="true"></span>
                            </a>
-                        </td>
+                        </td> -->
                         <td colspan="4" class="text-right">Totales:</td>
                         <td>  
                            <div id="aneto" class="form-control text-right" style="font-weight: bold;">0.00</div>

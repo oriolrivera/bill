@@ -9,7 +9,10 @@ class Invoice extends CI_Controller {
     }
 
     public function invoices(){
-    	$this->layout->view("invoices");
+
+        $results=$this->invoice_model->getManagerInvoices();
+        $this->layout->setTitle("Gestor Facturas");
+    	$this->layout->view("invoices",compact('results'));
     }
 
      public function newinvoice(){
@@ -20,7 +23,7 @@ class Invoice extends CI_Controller {
         $save=array(
 
            "client"=>$this->input->post("client",true),
-           "date_service"=>$this->input->post("fecha",true), 
+           "date_service"=>date("Y-m-d",strtotime($this->input->post("fecha",true))), 
            "hour"=>$this->input->post("hora",true), 
            "country"=>$this->input->post("codpais",true), 
            "province"=>$this->input->post("provincia",true), 
@@ -96,6 +99,17 @@ class Invoice extends CI_Controller {
     	$this->layout->view("newinvoice",compact('results'));
     }
 
+    public function delete(){
+       
+        if($this->input->post("delete"))
+            {                               
+                 $this->invoice_model->deleteProduct();              
+            }else{
+                $this->session->set_flashdata("mensaje","<div class='alert alert-danger' role='alert'><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>Tiene que selecionar un registro a eliminar.</div>");
+                redirect(base_url()."invoice/invoices");             
+        }
+    
+    }#end
 
 }#end class
     

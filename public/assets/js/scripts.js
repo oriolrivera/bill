@@ -341,26 +341,26 @@ function add_articulo(ref,desc,pvp,dto,codimpuesto,cantidad)
 function add_linea_libre()
 {
    codimpuesto = false;
-   for(var i=0; i<all_impuestos.length; i++)
+ /*  for(var i=0; i<all_impuestos.length; i++)
    {
       codimpuesto = all_impuestos[i].codimpuesto;
       break;
-   }
+   }*/
    
    $("#lineas_albaran").append("<tr id=\"linea_"+numlineas+"\">\n\
       <td><input type=\"hidden\" name=\"idlinea_"+numlineas+"\" value=\"-1\"/>\n\
-         <input type=\"hidden\" name=\"referencia_"+numlineas+"\"/>\n\
+         <input type=\"hidden\" name=\"referencia[]\"/>\n\
          <div class=\"form-control\"></div></td>\n\
-      <td><textarea class=\"form-control\" id=\"desc_"+numlineas+"\" name=\"desc_"+numlineas+"\" rows=\"1\" onclick=\"this.select()\"></textarea></td>\n\
-      <td><input type=\"number\" step=\"any\" id=\"cantidad_"+numlineas+"\" class=\"form-control text-right\" name=\"cantidad_"+numlineas+
+      <td><textarea class=\"form-control\" id=\"desc_"+numlineas+"\" name=\"desc[]\" rows=\"1\" onclick=\"this.select()\"></textarea></td>\n\
+      <td><input type=\"number\" step=\"any\" id=\"cantidad[]\" class=\"form-control text-right\" name=\"cantidad_"+numlineas+
          "\" onchange=\"recalcular()\" onkeyup=\"recalcular()\" autocomplete=\"off\" value=\"1\"/></td>\n\
       <td><button class=\"btn btn-sm btn-danger\" type=\"button\" onclick=\"$('#linea_"+numlineas+"').remove();recalcular();\">\n\
          <span class=\"glyphicon glyphicon-trash\"></span></button></td>\n\
-      <td><input type=\"text\" class=\"form-control text-right\" id=\"pvp_"+numlineas+"\" name=\"pvp_"+numlineas+"\" value=\"0\"\n\
+      <td><input type=\"text\" class=\"form-control text-right\" id=\"pvp_"+numlineas+"\" name=\"precio[]\" value=\"0\"\n\
           onkeyup=\"recalcular()\" onclick=\"this.select()\" autocomplete=\"off\"/></td>\n\
-      <td><input type=\"text\" id=\"dto_"+numlineas+"\" name=\"dto_"+numlineas+"\" value=\"0\" class=\"form-control text-right\"\n\
+      <td><input type=\"text\" id=\"dto_"+numlineas+"\" name=\"dto[]\" value=\"0\" class=\"form-control text-right\"\n\
           onkeyup=\"recalcular()\" onclick=\"this.select()\" autocomplete=\"off\"/></td>\n\
-      <td><input type=\"text\" class=\"form-control text-right\" id=\"neto_"+numlineas+"\" name=\"neto_"+numlineas+
+      <td><input type=\"text\" class=\"form-control text-right\" id=\"neto[]\" name=\"neto_"+numlineas+
          "\" onchange=\"ajustar_neto()\" onclick=\"this.select()\" autocomplete=\"off\"/></td>\n\
       "+aux_all_impuestos(numlineas,codimpuesto)+"\n\
       <td><input type=\"text\" class=\"form-control text-right\" id=\"total_"+numlineas+"\" name=\"total_"+numlineas+
@@ -729,6 +729,23 @@ $(document).ready(function() {
       event.preventDefault();
       event.stopPropagation();
    });
+
+   $("input[name=checkAll]").change(function(){
+      $('input[type=checkbox]').each( function() {
+         if($("input[name=checkAll]:checked").length == 1){
+            this.checked = true;
+         } else {
+            this.checked = false;
+         }
+      });
+   });//end
+
+
+    $("#delete-invoice").click(function(){
+      var formg = $('#form');
+      formg.attr("action", route()+"delete");
+      formg.submit();
+    });
 
 /*
    $("body").on("change","#add_services", function(){

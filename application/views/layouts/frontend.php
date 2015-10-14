@@ -198,6 +198,7 @@
     <!-- Custom JQuery -->
   <script src="<?php echo base_url(); ?>public/assets/js/app/custom.js" type="text/javascript"></script>
   <script src="<?php echo base_url(); ?>public/assets/js/bootstrap/bootstrap-datepicker.js"></script>
+  <script src="<?php echo base_url(); ?>public/assets/js/route.js" type="text/javascript"></script>
 	<script src="<?php echo base_url(); ?>public/assets/js/scripts.js" type="text/javascript"></script>
 
   <script>
