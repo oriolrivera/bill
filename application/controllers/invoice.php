@@ -6,6 +6,7 @@ class Invoice extends CI_Controller {
     {
         parent::__construct();
         $this->layout->setLayout('frontend');
+         if(!$this->session->userdata("id")){ redirect(base_url());}
     }
 
     public function invoices(){
@@ -40,7 +41,7 @@ class Invoice extends CI_Controller {
 
         );
 
-        $saveId=$this->invoice_model->addInvoice($save);
+        #$saveId=$this->invoice_model->addInvoice($save);
             
            $referenciaPost=$this->input->post("referencia",true);
             $dataReferencia= implode(',', $referenciaPost);
@@ -70,6 +71,10 @@ class Invoice extends CI_Controller {
             $dataIva= implode(',', $ivaPost);
             $arrayIva=preg_split("/,/",$dataIva);
 
+            $totalpPost=$this->input->post("totalp",true);
+            $datatotalp= implode(',', $totalpPost);
+            $arraytotalp=preg_split("/,/",$datatotalp);
+
 
             for($init=0;$init<count($arrayReferencia);$init++) {
                             $querySaveInvoices=array(
@@ -81,15 +86,16 @@ class Invoice extends CI_Controller {
                                 "discount"=>$arrayDto[$init],
                                 "neto"=>$arrayNeto[$init],
                                 "itbis"=>$arrayIva[$init],
+                                "total"=>$arraytotalp[$init],
                                 "id_rel"=>$saveId,   
                             );
                             
-                            $this->invoice_model->addInvoices($querySaveInvoices);
+                           # $this->invoice_model->addInvoices($querySaveInvoices);
             }#end for
 
 
               $this->session->set_flashdata("mensaje","<div class='alert alert-success' role='alert'><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>Registro creado con éxito.</div>");
-             # redirect(base_url()."invoice/newinvoice");
+              redirect(base_url()."invoice/newinvoice");
 
 		}#end post
 

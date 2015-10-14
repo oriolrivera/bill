@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   
@@ -23,6 +23,7 @@
     
     <!-- Base Styling  -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/css/app/app.v1.css" />
+    <link rel="stylesheet" href="<?php echo base_url(); ?>public/assets/css/style.css" />
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -200,6 +201,8 @@
   <script src="<?php echo base_url(); ?>public/assets/js/bootstrap/bootstrap-datepicker.js"></script>
   <script src="<?php echo base_url(); ?>public/assets/js/route.js" type="text/javascript"></script>
 	<script src="<?php echo base_url(); ?>public/assets/js/scripts.js" type="text/javascript"></script>
+  <script src="<?php echo base_url(); ?>public/assets/js/plugins/ckeditor/ckeditor.js"></script>
+  <script src="<?php echo base_url(); ?>public/assets/js/plugins/ckeditor/adapters/jquery.js"></script>
 
   <script>
 

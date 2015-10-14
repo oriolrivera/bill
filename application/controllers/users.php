@@ -6,6 +6,7 @@ class Users extends CI_Controller {
 	{
 		parent::__construct();
 		$this->layout->setLayout("backend");
+		
 	
 	}
 

@@ -26,8 +26,8 @@
 
          <div class="form-group">
                 <i class="fa fa-user"></i>  Cliente:
-            <select name="client" id="" class="form-control" >
-                  <option value=" ">Selecciona Cliente</option>
+            <select name="client" id="" class="form-control" required="required">
+                  <option value="">Selecciona Cliente</option>
                   <?php 
                      foreach ($results as $result) {
                      ?>  
@@ -107,7 +107,7 @@
                         </td> -->
                         <td colspan="4" class="text-right">Totales:</td>
                         <td>  
-                           <div id="aneto" class="form-control text-right" style="font-weight: bold;">0.00</div>
+                           <div id="aneto" class="form-control text-right" style="font-weight: bold;width:100px">0.00</div>
                            <input type="hidden" name="aneto_input" id='aneto_input'>
                         </td>
                         <td>
@@ -183,13 +183,7 @@
             <div class="container-fluid" style="margin-top: 10px;">
                <div class="row">
                   <div class="col-sm-3">
-                     <div class="form-group">
-                        <a href="index.php?page=admin_agente&amp;cod=57">Empleado</a>:
-                        <select name="codagente" class="form-control">
-                           <option value="57">demo Demo</option>
-                           
-                        </select>
-                     </div>
+                     
                   </div>
                   <div class="col-sm-2">
                      <div class="form-group">
@@ -365,20 +359,45 @@
       <div class="modal-content">
          <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title">Buscar artículos</h4>
+            <h4 class="modal-title">Buscar servicios</h4>
          </div>
          <div class="modal-body">
 
 
             <form id="f_buscar_articulos" name="f_buscar_articulos" action="" method="post" class="form">
-               <input type="hidden" name="codcliente" value="000016"/>
+             <!--   <input type="hidden" name="codcliente" value="000016"/> -->
                <div class="container-fluid">
                   <div class="row">
-                     <div class="col-sm-4">
-                        <div class="input-group">
-                           <input class="form-control" type="text" name="query" autocomplete="off"/>
-                           <td class="text-right"><a href="#" onclick="return add_articulo('1056','UMOhZ2luYSB3ZWI=','260000','0','ITBIS13','1')">260 000.00 $</a></td>
-                        </div>
+                     <div class="col-sm-12">
+                     
+                           <input class="form-control" type="hidden" name="query" autocomplete="off"/>
+
+                        <!--    <td class="text-right"><a href="#" onclick="return add_articulo('1056','UMOhZ2luYSB3ZWI=','260000','0','ITBIS13','1')">260 000.00 $</a></td> -->
+                        <?php $resultsServices=$this->services_model->getServicesManager(); ?>
+                           <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="basic-datatable">
+                            <thead>
+
+                              <tr>                              
+                              <th class="text-left">Código</th>
+                              <th class="text-left">Nombre</th>
+                              <th class="center">Precio</th>
+                           </tr>
+                                
+                            </thead>
+                            <tbody>
+                              <?php foreach ($resultsServices as $result) {
+                                
+                              ?>                               
+                                   <tr class="odd gradeX">
+                                       <td><?php echo $result->id_service; ?></td>
+                                       <td><a href="#" onclick="return add_articulo('<?php echo $result->id_service; ?>','<?php echo base64_encode($result->name); ?>','<?php echo $result->price; ?>','0','ITBIS13','1')"><?php echo $result->name; ?></a></td>
+                                       <td class="center"><a href="#" onclick="return add_articulo('<?php echo $result->id_service; ?>','<?php echo base64_encode($result->name); ?>','<?php echo $result->price; ?>','0','ITBIS13','1')"><?php echo number_format($result->price,2); ?></a></td>                                 
+                                   </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+
+                        
                        
                      </div>
                     
@@ -390,7 +409,7 @@
 
 
 
-
+<!-- 
             <table class="table table-hover">
                <thead>
                   <tr>
@@ -414,7 +433,7 @@
 
                   </tbody>
 
-            </table>
+            </table> -->
 
 
 
@@ -428,3 +447,12 @@
    </div>
 </div>
  
+
+ <script>
+    function displaySelection()
+    {
+        var mySelect = document.getElementById("client");
+        var mySelection = mySelect.selectedIndex;
+        alert(mySelection);
+    }
+</script>
