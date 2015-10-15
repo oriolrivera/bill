@@ -76,10 +76,26 @@ class Client extends CI_Controller {
     } 
 
     public function clients(){
-    	$results=$this->client_model->getClients();
+
+     	$results=$this->client_model->getClients();
+
     	$this->layout->setTitle("Gestor Clientes");
     	$this->layout->view("clients", compact('results'));
     }
+
+    public function editclient($id=null){
+
+    	if (!$id) {show_404();}
+
+    	$result=$this->client_model->getClientForId($id);
+
+    	if (sizeof($result)==0) { show_404();}
+
+    	$this->layout->setTitle("Editar Cliente");
+    	$this->layout->view("editclient",compact('result'));
+    }#end
+
+
 
     public function delete(){
     	if($this->input->post("delete"))

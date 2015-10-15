@@ -20,6 +20,12 @@ class services_model extends CI_Model
 		return true;
 	}#end
 
+	public function updateServices($data=array(),$id=null){
+			$this->db->where('id_service', $id);
+			$this->db->update('service', $data); 
+			return true;
+	}#end
+
 	public function getServicesForId($id=null){
 		#SELECT  FROM `` WHERE 1
 			$query=$this->db

@@ -32,6 +32,21 @@ class client_model extends CI_Model
 		return true;
 	}#end
 
+	public function getClientForId($id=null){
+   			$query=$this->db
+			#->select("`id`, `name`, `razon_social`, `cif_nif`, `phone_one`, `phone_two`, `fax`, `email`, `web`, `observation`")
+			->select("`id`, `name`, `razon_social`, `cif_nif`, `phone_one`, `phone_two`, `fax`, `email`, `web`, `observation`,
+				`id_client_bank`, `country`, `province`, `city`, `code_zip`, `address`, `town`, `billing_address`, `description`, `id_rel`,
+				`id_bank_account`, `back`, `no_account`, `id_rel_bank_account`")
+			->from("client, client_bank, client_bank_account")
+			->where(array("id"=>$id))
+			->where("id = id_rel")
+			->where("id = id_rel_bank_account")
+			->get();
+			#echo $this->db->last_query();exit;
+			return $query->row();
+    }#end
+
 	public function delete(){
 		$idsToDelete=$_POST["delete"];
 

@@ -51,6 +51,28 @@ class Services extends CI_Controller {
 
     	if (sizeof($result)==0) { show_404();}
 
+
+    	if($this->input->post())
+		{
+			$querySave=array(
+					"name"=>$this->input->post("name",true),
+					"name_manager"=>$this->input->post("encargado",true),
+					"price"=>$this->input->post("precio",true),
+					"itbis"=>$this->input->post("itbis",true),
+					"phone_one"=>$this->input->post("telefono1",true),
+					"phone_two"=>$this->input->post("telefono2",true),
+					"fax"=>$this->input->post("fax",true),
+					"email"=>$this->input->post("email",true),
+					"web"=>$this->input->post("web",true),
+					"description"=>$this->input->post("descripcion",true),
+			);
+
+			$this->services_model->updateServices($querySave,$id);
+
+				$this->session->set_flashdata("mensaje","<div class='alert alert-success' role='alert'><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>Registro actualizado con éxito.</div>");
+				redirect(base_url()."services/updateservices/".$id);
+		}#end post
+
     	$this->layout->setTitle("Editar Servicio");
     	$this->layout->view("updateservices",compact('result'));
     }#end
