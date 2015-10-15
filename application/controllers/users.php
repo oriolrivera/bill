@@ -5,7 +5,7 @@ class Users extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->layout->setLayout("backend");
+		$this->layout->setLayout("frontend");
 		
 	
 	}
@@ -75,10 +75,10 @@ class Users extends CI_Controller {
 			  }else{
 			 	  $validate = $this->form_validation->run("updateProfilepass");
 			  }
-
 			  if ($validate) {
-			  	//die("ok");
-							if ($this->input->post("passact")=="") {	
+			  # die("ok");
+			  	  
+					if ($this->input->post("passact")=="") {	
 							#die("ver");
 
 							$querySave=array(
@@ -134,14 +134,7 @@ class Users extends CI_Controller {
 
 				}#end validate
 			}#end post
-				$this->layout->js
-				(
-					array
-					(
-						base_url()."public/js/ckeditor.js"
-						
-					)
-				);
+				
 			
 			$this->layout->setTitle("Mi Perfil");
 			$this->layout->view("profile", compact('result'));

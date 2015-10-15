@@ -15,6 +15,22 @@
       }
    </script>
 
+<div class="col-sm-11">
+
+   <?php
+      if($this->session->flashdata("mensaje")!='' )
+      {
+          echo $this->session->flashdata("mensaje");
+      }
+      ?>
+      <?php
+      $validation_error=validation_errors("<div class='alert alert-danger' role='alert'><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>","</div>");
+      if($validation_error != "")
+      {
+          echo $validation_error;
+      }
+      ?>
+</div>
 
 <!-- <form id="f_new_albaran" class="form" name="f_new_albaran" action="index.php?page=nueva_venta&amp;tipo=factura" method="post"> -->
 <?php echo form_open(null,array("name"=>"form","id"=>"form"));?>

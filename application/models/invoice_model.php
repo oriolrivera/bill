@@ -40,8 +40,6 @@ class invoice_model extends CI_Model
 				$this->db->where('id_rel IN ('.implode(',',$idsToDelete).')', NULL, FALSE);
 				$this->db->delete($deleteInvoiceServices);
 
-			
-
 				$this->session->set_flashdata("mensaje","<div class='alert alert-success' role='alert'><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>Selección eliminada con éxito.</div>");
 				redirect(base_url()."invoice/invoices");
 	}#end

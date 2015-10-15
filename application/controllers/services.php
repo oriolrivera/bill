@@ -43,4 +43,26 @@ class Services extends CI_Controller {
     	$this->layout->view("addservices");
     }
 
+    public function updateservices($id=null){
+
+    	if (!$id) {show_404();} #si no existen parametros via get
+
+    	$result=$this->services_model->getServicesForId($id);
+
+    	if (sizeof($result)==0) { show_404();}
+
+    	$this->layout->setTitle("Editar Servicio");
+    	$this->layout->view("updateservices",compact('result'));
+    }#end
+
+    public function delete(){
+    	 	if($this->input->post("delete"))
+            {                               
+                 $this->services_model->delete();              
+            }else{
+                $this->session->set_flashdata("mensaje","<div class='alert alert-danger' role='alert'><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>Tiene que selecionar un registro a eliminar.</div>");
+                redirect(base_url()."client/clients");             
+        }
+    }#end
+
 }#end class

@@ -89,5 +89,5 @@ class Client extends CI_Controller {
                 $this->session->set_flashdata("mensaje","<div class='alert alert-danger' role='alert'><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>Tiene que selecionar un registro a eliminar.</div>");
                 redirect(base_url()."client/clients");             
         }
-    }#edn
+    }#end
 }#end

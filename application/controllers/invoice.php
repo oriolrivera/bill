@@ -41,7 +41,7 @@ class Invoice extends CI_Controller {
 
         );
 
-        #$saveId=$this->invoice_model->addInvoice($save);
+        $saveId=$this->invoice_model->addInvoice($save);
             
            $referenciaPost=$this->input->post("referencia",true);
             $dataReferencia= implode(',', $referenciaPost);
@@ -90,7 +90,7 @@ class Invoice extends CI_Controller {
                                 "id_rel"=>$saveId,   
                             );
                             
-                           # $this->invoice_model->addInvoices($querySaveInvoices);
+                            $this->invoice_model->addInvoices($querySaveInvoices);
             }#end for
 
 

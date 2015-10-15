@@ -751,6 +751,12 @@ $(document).ready(function() {
       var formg = $('#form');
       formg.attr("action", route()+"delete");
       formg.submit();
+    }); 
+
+    $("#delete-services").click(function(){
+      var formg = $('#form');
+      formg.attr("action", route()+"delete");
+      formg.submit();
     });
 
 /*

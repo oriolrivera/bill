@@ -27,6 +27,43 @@ $config = array(
             
         ),
 
+        
+         /**
+     * update profile admin
+     */
+    'updateProfile'
+        => array
+        (
+            
+            array('field' => 'name','label' => 'Nombre','rules' => 'required|is_string|trim|xss_clean|max_length[100]'),
+            array('field' => 'lastname','label' => 'Apellido','rules' => 'required|is_string|trim|xss_clean|max_length[100]'),           
+            array('field' => 'email','label' => 'E-Mail','rules' => 'required|is_string|trim|xss_clean|max_length[100]|valid_email'),
+            array('field' => 'login','label' => 'Login','rules' => 'required|is_string|trim|xss_clean|max_length[100]'),           
+            
+           
+        
+        ),    
+
+
+         /**
+     * update profile admin
+     */
+    'updateProfilepass'
+        => array
+        (
+            
+            array('field' => 'name','label' => 'Nombre','rules' => 'required|is_string|trim|xss_clean|max_length[100]'),
+            array('field' => 'lastname','label' => 'Apellido','rules' => 'required|is_string|trim|xss_clean|max_length[100]'),           
+            array('field' => 'email','label' => 'E-Mail','rules' => 'required|is_string|trim|xss_clean|max_length[100]|valid_email'),
+            array('field' => 'login','label' => 'Login','rules' => 'required|is_string|trim|xss_clean|max_length[100]'),           
+            array('field' => 'passact','label' => 'Password actual','rules' => 'required|is_string|trim|xss_clean|max_length[100]'),           
+            array('field' => 'pass','label' => 'Nuevo Password','rules' => 'required|is_string|trim|xss_clean|max_length[100]'),           
+            array('field' => 'confirpass','label' => 'Confirmar Password','rules' => 'required|is_string|trim|xss_clean|max_length[100]'),           
+            
+           
+        
+        ),    
+
 	
  
 

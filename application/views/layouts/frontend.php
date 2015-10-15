@@ -62,12 +62,12 @@
                   <img src="http://oriolrivera.com/public/img/oriol.jpg" class="img-circle" alt="...">
                   <h4 class="user-name">Oriol Rivera</h4>
                   
-                  <div class="dropdown user-login">
-                  <button class="btn btn-xs dropdown-toggle btn-rounded" type="button" data-toggle="dropdown" aria-expanded="true">
-                    <i class="fa fa-circle status-icon available"></i> Available <i class="fa fa-angle-down"></i>
-                  </button>
-                 
-                  </div>	 
+              <!--     <div class="dropdown user-login">
+                 <button class="btn btn-xs dropdown-toggle btn-rounded" type="button" data-toggle="dropdown" aria-expanded="true">
+                   <i class="fa fa-circle status-icon available"></i> Available <i class="fa fa-angle-down"></i>
+                 </button>
+                                  
+                 </div> -->	 
             </div>
             
             
@@ -105,9 +105,10 @@
                         </ul>
                   </li>
 
-                    <li class="has-submenu"><a href="#"><i class="fa fa-comment-o"></i> <span class="nav-label">Configuracion</span></a>
+                    <li class="has-submenu"><a href="#"><i class="fa fa-comment-o"></i> <span class="nav-label">Gestor Usuarios</span></a>
                     	<ul class="list-unstyled">
-                        	<li><a href="#">Crear usuario del sistema</a></li>
+                          <li><a href="<?php echo base_url(); ?>users/managerusersystem">Usuarios</a></li>
+                        	<li><a href="<?php echo base_url(); ?>users/addusersystem">Crear usuario del sistema</a></li>
                           
                         </ul>
                     </li>
@@ -144,6 +145,8 @@
                     <li class="dropdown">
                       <a data-toggle="dropdown" class="dropdown-toggle" href="#">Configuración <span class="caret"></span></a>
                       <ul role="menu" class="dropdown-menu">                       
+                        <li class="divider"></li>
+                        <li><a href="<?php echo base_url(); ?>users/profile">Perfil</a></li>
                         <li class="divider"></li>
                         <li><a href="<?php echo base_url(); ?>logout">Cerrar Sessión</a></li>
                       </ul>
