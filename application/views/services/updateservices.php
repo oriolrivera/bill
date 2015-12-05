@@ -1,4 +1,4 @@
-<div class="page-header"><h1>Crear Servicio</h1></div>
+<div class="page-header"><h1>Editar Servicio</h1></div>
 <?php echo form_open(null,array("name"=>"form","id"=>"form"));?>
 <div class="pull-right">
 	<button class="btn btn-sm btn-primary" type="submit">

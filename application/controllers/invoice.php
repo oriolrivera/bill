@@ -105,6 +105,39 @@ class Invoice extends CI_Controller {
     	$this->layout->view("newinvoice",compact('results'));
     }
 
+    public function pdf()
+    {
+      $cuerpo=
+      '
+        <!doctype html>
+        <html> 
+        <body>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, commodi dicta, a explicabo, et accusantium iusto ducimus magnam ut soluta quidem perferendis. Nisi ab explicabo temporibus animi, ratione, reiciendis optio.
+      </body></html>';
+    /*  $cuerpo.='
+      <h1>Ejemplo de PDF</h1>
+      <ol>';
+
+      for ($i=0; $i < 10; $i++) 
+      { 
+        $cuerpo.='<li>el valor de i es '.$i.' ñandú</li>';
+      }
+
+      $cuerpo.='</ol>';
+*/
+     /* $cuerpo.='
+        <img src="'.base_url().'public/assets/images/avtar/user.png" />
+      ';*/
+#$cuepo.='</body></html>';
+      $mpdf=new mPDF(); 
+      $nombre="Reporte de Usuarios_".date("Y-m-d H:i:s").".pdf";
+      $mpdf->WriteHTML($cuerpo);
+      $mpdf->Output($nombre,'I');
+      exit;
+
+  
+    }#end
+
     public function delete(){
        
         if($this->input->post("delete"))
