@@ -162,7 +162,7 @@
                               <?php
                            }else{
                               ?>
-                              <input type="checkbox" name="dirfact" value="TRUE">
+                              <input type="checkbox" name="dirfact" value="false">
                               <?php
                               } ?>
                           

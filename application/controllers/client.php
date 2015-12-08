@@ -35,7 +35,7 @@ class Client extends CI_Controller {
 					$saveIde=$this->client_model->addClient($querySave);
 
 					if ($this->input->post("dirfact",true)==true) {
-						$dirFact=$this->input->post("dirfact",true);
+						$dirFact=1;
 					}else{
 						$dirFact=0;
 					}
@@ -90,6 +90,65 @@ class Client extends CI_Controller {
     	$result=$this->client_model->getClientForId($id);
 
     	if (sizeof($result)==0) { show_404();}
+
+    	if($this->input->post())
+		{
+			if($this->form_validation->run("addclient"))
+			{
+				#die("validado");
+				
+				
+					$querySave=array(
+							"name"=>$this->input->post("name",true),
+							"razon_social"=>$this->input->post("razonsocial",true),
+							"cif_nif"=>$this->input->post("cifnif",true),
+							"phone_one"=>$this->input->post("telefono1",true),
+							"phone_two"=>$this->input->post("telefono2",true),
+							"fax"=>$this->input->post("fax",true),
+							"email"=>$this->input->post("email",true),
+							"web"=>$this->input->post("web",true),
+							"observation"=>$this->input->post("observaciones",true),
+							"date_added"=>date("Y-m-d h:i:s"),
+					);
+
+					$this->client_model->editClient($querySave,$id);
+
+					if ($this->input->post("dirfact",true)==true) {
+						$dirFact=1;
+					}else{
+						$dirFact=0;
+					}
+					
+					$querySaveClientBank=array(
+							"country"=>$this->input->post("pais",true),
+							"province"=>$this->input->post("provincia",true),
+							"city"=>$this->input->post("ciudad",true),
+							"address"=>$this->input->post("direccion",true),
+							"code_zip"=>$this->input->post("codpostal",true),
+							"town"=>$this->input->post("municipio",true),
+							"billing_address"=>$dirFact,
+							"description"=>$this->input->post("descripcion",true),
+							"id_rel"=>$id,
+							"date_added"=>date("Y-m-d h:i:s"),
+						);
+
+					$this->client_model->editClientBank($querySaveClientBank,$id);
+					
+					if ($this->input->post("banco",true)) {
+				
+						$querySaveClientBankAccount=array(
+								"back"=>$this->input->post("banco",true),
+								"no_account"=>$this->input->post("nocuenta",true),
+								"id_rel_bank_account"=>$id,
+							);
+
+						$this->client_model->editClientBankAccount($querySaveClientBankAccount,$id);
+					}
+
+					$this->session->set_flashdata("mensaje","<div class='alert alert-success' role='alert'><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>Registro editado con éxito.</div>");
+					redirect(base_url()."client/editclient/".$id."/");
+			}#end validation
+		}#end post
 
     	$this->layout->setTitle("Editar Cliente");
     	$this->layout->view("editclient",compact('result'));

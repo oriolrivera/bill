@@ -25,7 +25,25 @@ class client_model extends CI_Model
 	public function addClientBank($data=array()){
 		$this->db->insert('client_bank',$data);
 		return true;
+	}#end
+
+	public function editClient($data=array(),$id=null){
+		$this->db->where('id', $id);
+		$this->db->update('client', $data); 
+		return true;
+	}#end
+
+	public function editClientBank($data=array(),$id=null){
+		$this->db->where('id_rel', $id);
+		$this->db->update('client_bank', $data); 
+		return true;
 	}#end	
+
+	public function editClientBankAccount($data=array(),$id=null){
+		$this->db->where('id_rel_bank_account', $id);
+		$this->db->update('client_bank_account', $data); 
+		return true;
+	}#end
 
 	public function addClientBankAccount($data=array()){
 		$this->db->insert('client_bank_account',$data);
@@ -34,16 +52,15 @@ class client_model extends CI_Model
 
 	public function getClientForId($id=null){
    			$query=$this->db
-			#->select("`id`, `name`, `razon_social`, `cif_nif`, `phone_one`, `phone_two`, `fax`, `email`, `web`, `observation`")
 			->select("`id`, `name`, `razon_social`, `cif_nif`, `phone_one`, `phone_two`, `fax`, `email`, `web`, `observation`,
-				`id_client_bank`, `country`, `province`, `city`, `code_zip`, `address`, `town`, `billing_address`, `description`, `id_rel`,
+				`id_client_bank`, `country`, `province`, `city`, `code_zip`, `address`, `town`, `billing_address`, `description`,
+				 `id_rel`,
 				`id_bank_account`, `back`, `no_account`, `id_rel_bank_account`")
 			->from("client, client_bank, client_bank_account")
 			->where(array("id"=>$id))
 			->where("id = id_rel")
 			->where("id = id_rel_bank_account")
 			->get();
-			#echo $this->db->last_query();exit;
 			return $query->row();
     }#end
 

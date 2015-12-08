@@ -17,6 +17,29 @@ class invoice_model extends CI_Model
 			return $query->result();
 	}#end
 
+	public function getInvoicesForId($id=null){
+		
+		$query=$this->db
+			->select("`id_invoice`,`client`,`date_service`,`hour`,`country`,`province`,
+				`city`,`zip_code`,`address`,`observation`,`aneto`,`aiva`,`atotal`,
+				`type`,`payment_method`,`date_added`")
+			->from("invoice")
+			->where(array("id_invoice"=>$id))
+			->get();
+			//echo $this->db->last_query();exit;
+			return $query->row();
+	}#end
+
+	public function getInvoicesServicesForId($id=null){
+		
+		$query=$this->db
+			->select("`id_invoice_services`,`reference`,`description`,`quantity`,`price`,`discount`,`neto`,`itbis`,`total`,`id_rel`")
+			->from("invoice_services")
+			->where(array("id_rel"=>$id))
+			->get();
+			return $query->result();
+	}#end
+
 	 
 	public function addInvoice($data=array()){
 		$this->db->insert('invoice',$data);

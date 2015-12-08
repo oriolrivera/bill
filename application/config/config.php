@@ -330,8 +330,8 @@ $config['compress_output'] = FALSE;
 | regarding date handling.
 |
 */
-$config['time_reference'] = 'local';
-
+$config['time_reference'] = 'gmt';
+date_default_timezone_set('America/Santo_Domingo'); #America/Santo_Domingo
 
 /*
 |--------------------------------------------------------------------------

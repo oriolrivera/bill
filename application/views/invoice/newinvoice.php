@@ -63,7 +63,7 @@
          <div class="col-sm-2">
             <div class="form-group">
                Hora:
-               <input type="text" name="hora" class="form-control" value="<?php echo date("H:m:s"); ?>" autocomplete="off">
+               <input type="text" name="hora" class="form-control" value="<?php echo date("H:i:s"); ?>" autocomplete="off">
             </div>
          </div>
       </div>
@@ -151,13 +151,7 @@
                   <div class="col-sm-3">
                      <div class="form-group">
                         <a href="index.php?page=admin_paises#">País</a>:
-                        <select class="form-control" name="codpais">
-                        
-                           
-                           <option value="1">Republica Dominicana</option>
-                           
-                        
-                        </select>
+                     <input type="text" name="codpais" class="form-control">
                      </div>
                   </div>
                   <div class="col-sm-3">

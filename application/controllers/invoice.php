@@ -37,7 +37,7 @@ class Invoice extends CI_Controller {
            "atotal"=>$this->input->post("atotal",true), 
            "type"=>$this->input->post("tipo",true), 
            "payment_method"=>$this->input->post("forma_pago",true), 
-           "date_added"=>date("Y-m-d h:i:s"), 
+           "date_added"=>date("Y-m-d H:i:s"), 
 
         );
 
@@ -95,7 +95,7 @@ class Invoice extends CI_Controller {
 
 
               $this->session->set_flashdata("mensaje","<div class='alert alert-success' role='alert'><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>Registro creado con éxito.</div>");
-              redirect(base_url()."invoice/newinvoice");
+              redirect(base_url()."invoice/printer/".$saveId."/");
 
 		}#end post
 
@@ -103,7 +103,22 @@ class Invoice extends CI_Controller {
 
         $this->layout->setTitle("Nueva Factura");
     	$this->layout->view("newinvoice",compact('results'));
-    }
+    }#end
+
+    public function printer($id=null){
+
+      if (!$id) {show_404();}
+   
+      $results = $this->invoice_model->getInvoicesServicesForId($id);
+      $data = $this->invoice_model->getInvoicesForId($id);
+      $dataClient = $this->client_model->getClientForId($data->client);
+
+      if (sizeof($results)==0) { show_404();}
+
+      $this->layout->setTitle("Imprimir Factura");
+      $this->layout->view("printer", compact('results','data','dataClient'));
+
+    }#end print
 
     public function pdf()
     {
