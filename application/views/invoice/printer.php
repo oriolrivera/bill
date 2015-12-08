@@ -89,21 +89,27 @@
                                     <td><?php echo $result->price ?></td>
                                     <td class="price"><?php echo $result->discount ?> %</td>
                                     <td class="total"><?php echo $result->neto ?></td>
-                                    <td class="total"><?php echo $result->itbis ?></td>
+                                    <td class="total"><?php echo $result->itbis ?> %</td>
                                     <td class="total"><?php echo $result->total ?></td>
                                 </tr>
 
                             <?php } ?>
+
+                             <tr>
+                                    <td colspan="5" class="sub_total"></td>
+                                    <td class="sub_total"><b>Total Itbis:</b></td>
+                                    <td class="sub_total">$<?php echo $data->aiva; ?></td>
+                                </tr>
                                 
                                 <tr>
                                     <td colspan="5" class="sub_total"></td>
                                     <td class="sub_total"><b>Subtotal:</b></td>
-                                    <td class="sub_total">$7584.30</td>
+                                    <td class="sub_total">$<?php echo $data->aneto; ?></td>
                                 </tr>
                                 <tr class="total_bar">
                                     <td colspan="5" class="grand_total"></td>
                                     <td class="grand_total"><b>Total:</b></td>
-                                    <td class="grand_total">$7584.30</td>
+                                    <td class="grand_total">$<?php echo $data->atotal; ?></td>
                                 </tr>
                             </tbody>
                         </table>
