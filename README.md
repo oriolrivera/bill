@@ -2,5 +2,5 @@ Init project
 
 admin panel
 
-user = oriol
-password = #admin123
+user = admin
+password = admin
