@@ -58,6 +58,20 @@ function urldecode_parts($url) {
 	return $file.$query;
 }
 
+function urlencode_part($url) {
+	$file=$url;
+	$query='';
+	if (preg_match('/[?]/',$url)) {
+		$bits = preg_split('/[?]/',$url,2);
+		$file=$bits[0];
+		$query='?'.$bits[1];
+	}
+	$file = rawurldecode($file);
+	$query = urldecode($query);
+	return $file.$query;
+}
+
+
 
 function _strspn($str1, $str2, $start=null, $length=null) {
 	$numargs = func_num_args();
@@ -167,6 +181,8 @@ if(!function_exists('codeHex2utf')){
 	return code2utf($num,$lo);
   }
 }
+
+
 
 
 ?>

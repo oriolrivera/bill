@@ -1,10 +1,17 @@
+   <img src="<?php echo base_url(); ?>public/assets/images/logo.jpg" alt="Logo" width="200">
+
   <div class="warper container-fluid">
         	
             <div class="page-header"><h1>Factura <small># <?php echo $data->id_invoice; ?></small></h1>
-
-                     
+                                    
 
             </div>
+
+             <div class="pull-right">
+                   
+                    <a href="<?php echo base_url(); ?>invoice/invoices" class="btn btn-sm btn-danger"><i class="fa fa-back"></i> Salir</a>
+                </div>
+
             
                         <dl>
                           <dt>Fecha de creación de Factura </dt>
@@ -86,11 +93,11 @@
                                 <tr>
                                     <td><?php echo $result->description ?></td>			
                                     <td><?php echo $result->quantity ?></td>
-                                    <td><?php echo $result->price ?></td>
-                                    <td class="price"><?php echo $result->discount ?> %</td>
-                                    <td class="total"><?php echo $result->neto ?></td>
-                                    <td class="total"><?php echo $result->itbis ?> %</td>
-                                    <td class="total"><?php echo $result->total ?></td>
+                                    <td><?php echo number_format($result->price,2); ?></td>
+                                    <td class="price"><?php echo number_format($result->discount,2); ?> %</td>
+                                    <td class="total"><?php echo number_format($result->neto,2); ?></td>
+                                    <td class="total"><?php echo number_format($result->itbis,2); ?> %</td>
+                                    <td class="total"><?php echo number_format($result->total,2); ?></td>
                                 </tr>
 
                             <?php } ?>
@@ -98,18 +105,18 @@
                              <tr>
                                     <td colspan="5" class="sub_total"></td>
                                     <td class="sub_total"><b>Total Itbis:</b></td>
-                                    <td class="sub_total">$<?php echo $data->aiva; ?></td>
+                                    <td class="sub_total">$<?php echo number_format($data->aiva,2); ?></td>
                                 </tr>
                                 
                                 <tr>
                                     <td colspan="5" class="sub_total"></td>
                                     <td class="sub_total"><b>Subtotal:</b></td>
-                                    <td class="sub_total">$<?php echo $data->aneto; ?></td>
+                                    <td class="sub_total">$<?php echo number_format($data->aneto,2); ?></td>
                                 </tr>
                                 <tr class="total_bar">
                                     <td colspan="5" class="grand_total"></td>
                                     <td class="grand_total"><b>Total:</b></td>
-                                    <td class="grand_total">$<?php echo $data->atotal; ?></td>
+                                    <td class="grand_total">$<?php echo number_format($data->atotal,2); ?></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -117,8 +124,8 @@
                 </div>
                 
                 <div class="row">
-                    <div class="col-lg-6"><button class="btn btn-warning" type="button">Print Invoice</button></div>
-                    <div class="col-lg-6 text-right"><button class="btn btn-success" type="button">Submit Invoice of $7584.00</button></div>
+                    
+                    <div class="col-lg-6 text-right"><button class="btn btn-success" type="button"><i class="fa fa-print"></i> Imprimir Factura</button></div>
                 </div>
                     
             

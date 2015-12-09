@@ -75,7 +75,7 @@
 	                                    <td><?php echo date("d-m-Y",strtotime($result->date_service)); ?></td>
 	                                   
 	                                    <td class="center">
-	                                    	<a href="<?php echo base_url(); ?>invoice/pdf/<?php echo $result->id_invoice; ?>" class="btn btn-danger btn-circle btn-flat" title="Exportar a PDF"><i class="fa fa-file-pdf-o"></i></a>
+	                                    	<a href="<?php echo base_url(); ?>invoice/pdf/<?php echo $result->id_invoice; ?>" target="_blank" class="btn btn-danger btn-circle btn-flat" title="Exportar a PDF"><i class="fa fa-file-pdf-o"></i></a>
 	                                    	<a href="<?php echo base_url(); ?>invoice/printer/<?php echo $result->id_invoice; ?>" class="btn btn-primary btn-circle btn-flat" title="Imprimir"><i class="fa fa-print"></i></a>
 	                                    	<a href="<?php echo $result->id_invoice; ?>" class="btn btn-info btn-circle btn-flat"><i class="fa fa-pencil-square-o"></i></a>
 	                                    </td>

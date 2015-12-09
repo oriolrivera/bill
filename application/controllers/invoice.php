@@ -120,35 +120,19 @@ class Invoice extends CI_Controller {
 
     }#end print
 
-    public function pdf()
+    public function pdf($id =null)
     {
-      $cuerpo=
-      '
-        <!doctype html>
-        <html> 
-        <body>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, commodi dicta, a explicabo, et accusantium iusto ducimus magnam ut soluta quidem perferendis. Nisi ab explicabo temporibus animi, ratione, reiciendis optio.
-      </body></html>';
-    /*  $cuerpo.='
-      <h1>Ejemplo de PDF</h1>
-      <ol>';
+       $this->layout->setLayout('pdflayout');
+       if (!$id) {show_404();}
+   
+      $results = $this->invoice_model->getInvoicesServicesForId($id);
+      $data = $this->invoice_model->getInvoicesForId($id);
+      $dataClient = $this->client_model->getClientForId($data->client);
 
-      for ($i=0; $i < 10; $i++) 
-      { 
-        $cuerpo.='<li>el valor de i es '.$i.' ñandú</li>';
-      }
+      if (sizeof($results)==0) { show_404();}
 
-      $cuerpo.='</ol>';
-*/
-     /* $cuerpo.='
-        <img src="'.base_url().'public/assets/images/avtar/user.png" />
-      ';*/
-#$cuepo.='</body></html>';
-      $mpdf=new mPDF(); 
-      $nombre="Reporte de Usuarios_".date("Y-m-d H:i:s").".pdf";
-      $mpdf->WriteHTML($cuerpo);
-      $mpdf->Output($nombre,'I');
-      exit;
+       $this->layout->setTitle("Exportar Factura");
+       $this->layout->view("pdf", compact('results','data','dataClient'));
 
   
     }#end
