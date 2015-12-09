@@ -207,6 +207,19 @@
   <script src="<?php echo base_url(); ?>public/assets/js/plugins/ckeditor/ckeditor.js"></script>
   <script src="<?php echo base_url(); ?>public/assets/js/plugins/ckeditor/adapters/jquery.js"></script>
 
+   <script>
+              $(function(){
+
+                $("#print").click(function(){
+                    w=window.open();
+                    w.document.write($('#printContent').html());
+                    w.print();
+                    w.close();
+                });
+
+              });
+          </script>
+
   <script>
 
     fs_nf0 = 2;

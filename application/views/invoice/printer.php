@@ -1,7 +1,7 @@
-   <img src="<?php echo base_url(); ?>public/assets/images/logo.jpg" alt="Logo" width="200">
 
-  <div class="warper container-fluid">
-        	
+  <div class="warper container-fluid" id="printContent">
+       <img src="<?php echo base_url(); ?>public/assets/images/logo.jpg" alt="Logo" width="200">
+            
             <div class="page-header"><h1>Factura <small># <?php echo $data->id_invoice; ?></small></h1>
                                     
 
@@ -125,7 +125,9 @@
                 
                 <div class="row">
                     
-                    <div class="col-lg-6 text-right"><button class="btn btn-success" type="button"><i class="fa fa-print"></i> Imprimir Factura</button></div>
+                    <div class="col-lg-6 text-right">
+                        <button class="btn btn-success" type="button" id="print"><i class="fa fa-print"></i> Imprimir Factura</button>
+                    </div>
                 </div>
                     
             
@@ -135,3 +137,6 @@
             
             
         </div>
+
+
+         
