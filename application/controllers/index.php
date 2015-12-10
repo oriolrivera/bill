@@ -38,6 +38,7 @@ class Index extends CI_Controller {
 					$this->session->set_userdata("id",$results->id);
 					$this->session->set_userdata("name",$results->name);
 					$this->session->set_userdata("role",$results->role);
+					$this->session->set_userdata("image",$results->image);
 					redirect(base_url()."panel",301);
 				}
 
@@ -53,6 +54,7 @@ class Index extends CI_Controller {
 			#$this->session->sess_destroy();
 			$this->session->unset_userdata('id');
 			$this->session->unset_userdata('name');
+			$this->session->unset_userdata('image');
 			$this->session->set_flashdata("mensaje","<div class='alert alert-success' role='alert'><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>Se ha cerrado sesión exitosamente</div>");
 			redirect(base_url(),301);
 

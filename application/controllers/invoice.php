@@ -105,6 +105,20 @@ class Invoice extends CI_Controller {
     	$this->layout->view("newinvoice",compact('results'));
     }#end
 
+    public function editinvoice($id=null){
+      if (!$id) {show_404();}
+   
+      $results = $this->invoice_model->getInvoicesServicesForId($id);
+      $data = $this->invoice_model->getInvoicesForId($id);
+      $dataClient = $this->client_model->getClientForId($data->client);
+
+      if (sizeof($results)==0) { show_404();}
+
+      $this->layout->setTitle("Editar Factura");
+      $this->layout->view("editinvoice", compact('results','data','dataClient'));
+      
+    }
+
     public function printer($id=null){
 
       if (!$id) {show_404();}

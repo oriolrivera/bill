@@ -199,7 +199,7 @@
          <div class="col-sm-12" style="margin-top: 20px;">
             <div class="form-group">
                Observaciones:
-               <textarea class="form-control" name="observaciones" rows="3"></textarea>
+               <textarea class="form-control" name="observaciones" rows="3"><?php echo $data->observation ?></textarea>
             </div>
          </div>
       </div>

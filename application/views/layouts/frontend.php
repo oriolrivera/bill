@@ -59,15 +59,10 @@
 	<aside class="left-panel">
     		
             <div class="user text-center">
-                  <img src="http://oriolrivera.com/public/img/oriol.jpg" class="img-circle" alt="...">
-                  <h4 class="user-name">Oriol Rivera</h4>
+                  <img src="<?php echo base_url(); ?>public/assets/images/avtar/<?php echo $this->session->userdata('image'); ?>" class="img-circle" alt="<?php echo $this->session->userdata('name'); ?>">
+                  <h4 class="user-name"><?php echo $this->session->userdata('name'); ?></h4>
                   
-              <!--     <div class="dropdown user-login">
-                 <button class="btn btn-xs dropdown-toggle btn-rounded" type="button" data-toggle="dropdown" aria-expanded="true">
-                   <i class="fa fa-circle status-icon available"></i> Available <i class="fa fa-angle-down"></i>
-                 </button>
-                                  
-                 </div> -->	 
+           
             </div>
             
             
@@ -75,10 +70,10 @@
             <nav class="navigation">
             	<ul class="list-unstyled">
                   <li class="active">
-                    <a href="<?php echo base_url(); ?>panel"><i class="fa fa-bookmark-o"></i><span class="nav-label">Panel</span></a>
+                    <a href="<?php echo base_url(); ?>panel"><i class="fa fa-rocket"></i><span class="nav-label">Panel</span></a>
                   </li>	
 
-                  <li class="has-submenu"><a href="#"><i class="fa fa-comment-o"></i> <span class="nav-label">Gestor de Clientes</span></a>
+                  <li class="has-submenu"><a href="#"><i class="fa fa-file-text-o"></i> <span class="nav-label">Gestor de Clientes</span></a>
                       <ul class="list-unstyled">
                           <li><a href="<?php echo base_url(); ?>client/clients">Clientes</a></li>
                           <li><a href="<?php echo base_url(); ?>client/addclient">Crear Cliente</a></li>
@@ -91,12 +86,9 @@
                   <li>
                     <a href="<?php echo base_url(); ?>services/managerservices"><i class="fa fa-bookmark-o"></i><span class="nav-label">Servicios</span></a>
                   </li>  
-<!-- 
-                  <li>
-                    <a href="<?php echo base_url(); ?>/bill/panel"><i class="fa fa-bookmark-o"></i><span class="nav-label">Suplidor</span></a>
-                  </li> -->
+
                   
-                  <li class="has-submenu"><a href="#"><i class="fa fa-comment-o"></i> <span class="nav-label">Gestor de Facturas</span></a>
+                  <li class="has-submenu"><a href="#"><i class="fa fa-file-text-o"></i> <span class="nav-label">Gestor de Facturas</span></a>
                       <ul class="list-unstyled">
                           <li><a href="<?php echo base_url(); ?>invoice/invoices">Facturas</a></li>
                           <li><a href="<?php echo base_url(); ?>invoice/newinvoice">Crear Factura</a></li>
@@ -105,7 +97,7 @@
                         </ul>
                   </li>
 
-                    <li class="has-submenu"><a href="#"><i class="fa fa-comment-o"></i> <span class="nav-label">Gestor Usuarios</span></a>
+                    <li class="has-submenu"><a href="#"><i class="fa fa-users"></i> <span class="nav-label">Gestor Usuarios</span></a>
                     	<ul class="list-unstyled">
                           <li><a href="<?php echo base_url(); ?>users/managerusersystem">Usuarios</a></li>
                         	<li><a href="<?php echo base_url(); ?>users/addusersystem">Crear usuario del sistema</a></li>

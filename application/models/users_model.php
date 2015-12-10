@@ -13,7 +13,7 @@ class users_model extends CI_Model
 	public function login($user,$pass)
 	{
 		$query=$this->db
-			->select("`id`,`name`,`user`,`password`,`status`,`last_login`,role")
+			->select("`id`,`name`,`user`,image,`password`,`status`,`last_login`,role")
 			->from("users")
 			->where(array("user"=>$user,"password"=>$pass))
 			->where("status = 1")
