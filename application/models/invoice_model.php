@@ -17,6 +17,17 @@ class invoice_model extends CI_Model
 			return $query->result();
 	}#end
 
+	public function billReceivable(){
+		
+		$query=$this->db
+			->select("`id_invoice`,`client`,`atotal`,status,`date_added`,`date_service`")
+			->from("invoice")
+			->order_by("id_invoice","desc")
+			->where("status = 2")
+			->get();
+			return $query->result();
+	}#end
+
 	public function getManagerInvoicesForClient($id=null){
 		
 		$query=$this->db

@@ -116,7 +116,7 @@
                       <ul class="list-unstyled">
                           <li><a href="<?php echo base_url(); ?>invoice/invoices">Facturas</a></li>
                           <li><a href="<?php echo base_url(); ?>invoice/newinvoice">Crear Factura</a></li>
-                          <li><a href="#">Factura Pendiente por cobrar</a></li>
+                          <li><a href="<?php echo base_url(); ?>invoice/billreceivable">Factura Pendiente por cobrar</a></li>
                       
                         </ul>
                   </li>

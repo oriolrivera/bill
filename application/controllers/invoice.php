@@ -182,6 +182,12 @@ class Invoice extends CI_Controller {
   
     }#end
 
+    public function billreceivable(){
+          $results=$this->invoice_model->billReceivable();
+          $this->layout->setTitle("Facturas pendientes por cobrar");
+          $this->layout->view("billreceivable",compact('results'));
+    }#end 
+
     public function delete(){
        
         if($this->input->post("delete"))
