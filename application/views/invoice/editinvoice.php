@@ -171,7 +171,7 @@
                      <div class="form-group">
                         Dirección:
                         
-                        <input class="form-control" type="text" name="direccion" value="">
+                        <input class="form-control" type="text" name="direccion" value="asd" autocomplete="off">
                         
                      </div>
                   </div>

@@ -171,7 +171,7 @@
         
         
         <footer class="container-fluid footer">
-        	Copyright &copy; <?php echo date("Y"); ?> <a href="http://oriolrivera.com/" target="_blank">Sistema de facturación</a>
+        	Copyright &copy; <?php echo date("Y"); ?> Sistema de facturación, Desarrollado por <a href="http://oriolrivera.com/" target="_blank">Oriol Rivera</a>
             <a href="#" class="pull-right scrollToTop"><i class="fa fa-chevron-up"></i></a>
         </footer>
         

@@ -16,6 +16,34 @@
              $country = $data->country;
              $phone_one = $dataClient->phone_one;
       }
+
+      switch ($data->type) {
+              case '1':
+                  $typeFact = "Cotización";
+                  break;   
+
+              case '2':
+                  $typeFact = "Factura de cliente";
+                  break;
+
+              
+          }
+
+
+        switch ($data->payment_method) {
+              case '1':
+                  $typePayment = "CONTADO";
+                  break;   
+
+              case '2':
+                  $typePayment = "CHEQUE";
+                  break;
+
+              case '3':
+                  $typePayment = "TRANSFERENCIA";
+                  break;
+              
+          }
   ?>
 
 
@@ -48,7 +76,7 @@ $bodyHtml='
           <div class="warper container-fluid">
         	
             <div class="page-header">
-              <h1>Factura <small># '.$data->id_invoice.'</small></h1>   
+              <h1>'.$typeFact.' <small># '.$data->id_invoice.'</small></h1>   
             </div>
                         <dl>
                           <dt>Fecha de creación de Factura </dt>
@@ -57,13 +85,18 @@ $bodyHtml='
             
             
             
-                <div class="page-header text-right"><h3 class="no-margn">Manuel Perez</h3></div>
+                <div class="page-header text-right"><h3 class="no-margn">'.$dataClient->razon_social.'</h3></div>
                 
                 <hr>
                 
                 <div class="row">
                 
                     <div class="col-md-6">
+
+                      <dl>
+                          <dt>Forma de pago </dt>
+                                <dd> '.$typePayment.' </dd>
+                        </dl>
 
                         <address>
                           <strong>Razón social: </strong>'.$razon_socia.'<br>

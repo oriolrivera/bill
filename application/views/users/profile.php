@@ -35,7 +35,7 @@
 
 							<div class="widget-content nopadding">
 
-								<?php echo form_open(null,array("name"=>"form","id"=>"form","class"=>"form-horizontal"));?>
+								<?php echo form_open_multipart(null,array("name"=>"form","id"=>"form","class"=>"form-horizontal"));?>
 									<div class="form-group">
 										<label class="col-sm-3 col-md-3 col-lg-2 control-label">Nombre</label>
 										<div class="col-sm-7 col-md-6 col-lg-7">
@@ -88,7 +88,7 @@
 									<div class="form-group">
 										<label class="col-sm-3 col-md-3 col-lg-2 control-label">Foto:</label>
 										<div class="col-sm-7 col-md-6 col-lg-7">
-											<input type="file" name="photo" id="photo" class="form-control input-sm"  />
+											<input type="file" name="file" id="file" class="form-control input-sm"  />
 										</div>
 									</div>
 

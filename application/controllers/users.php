@@ -79,12 +79,42 @@ class Users extends CI_Controller {
 			  # die("ok");
 			  	  
 					if ($this->input->post("passact")=="") {	
-							#die("ver");
+							
+							$error=null;
+									$config["upload_path"]="./public/assets/images/avtar";
+									$config['allowed_types'] = 'jpg|png|jpeg';
+									$config["encrypt_name"]=false;
+									$config["file_name"]=$this->session->userdata('name');
+
+									if (!empty($_FILES['file']['name']))
+        							  {
+
+								    $this->load->library('upload', $config);
+									
+									
+
+										    if ( ! $this->upload->do_upload('file'))
+											{
+													$error=array("error"=>$this->upload->display_errors());
+													$this->session->set_flashdata("mensaje",$error["error"]);
+													redirect(base_url()."users/profile",301);
+											}
+											if($error==null)
+											{
+												$ima=$this->upload->data();												
+											    $file_name=$ima["file_name"];
+											}
+
+							 }else{
+							 	$file_name = $this->session->userdata('image');
+							 }
+							
 
 							$querySave=array(
 									"name"=>$this->input->post("name",true),
 									"lastname"=>$this->input->post("lastname",true),
 									"email"=>$this->input->post("email",true),
+									"image"=>$file_name,
 									"user"=>$this->input->post("login",true),					
 									"details"=>$this->input->post("details",true),							
 									"modified_at"=>date("Y-m-d h:i:s"),
@@ -103,7 +133,36 @@ class Users extends CI_Controller {
 					 			 	
 					 	
 							 if ($this->input->post("pass")==$this->input->post("confirpass")) {
-								#die("ok");
+								
+							 	$error=null;
+									$config["upload_path"]="./public/assets/images/avtar";
+									$config['allowed_types'] = 'jpg|png|jpeg';
+									$config["encrypt_name"]=false;
+									$config["file_name"]=$this->session->userdata('name');
+
+									if (!empty($_FILES['file']['name']))
+        							  {
+
+								    $this->load->library('upload', $config);
+									
+									
+
+										    if ( ! $this->upload->do_upload('file'))
+											{
+													$error=array("error"=>$this->upload->display_errors());
+													$this->session->set_flashdata("mensaje",$error["error"]);
+													redirect(base_url()."users/profile",301);
+											}
+											if($error==null)
+											{
+												$ima=$this->upload->data();												
+											    $file_name=$ima["file_name"];
+											}
+
+							 }else{
+							 	$file_name = $this->session->userdata('image');
+							 }
+								
 								$querySave=array(
 									"name"=>$this->input->post("name",true),
 									"lastname"=>$this->input->post("lastname",true),

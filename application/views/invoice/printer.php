@@ -2,7 +2,20 @@
   <div class="warper container-fluid" id="printContent">
        <img src="<?php echo base_url(); ?>public/assets/images/logo.jpg" alt="Logo" width="200">
             
-            <div class="page-header"><h1>Factura <small># <?php echo $data->id_invoice; ?></small></h1>
+            <div class="page-header">
+                         <?php 
+                            switch ($data->type) {
+                                case '1':
+                                    $typeFact = "Cotización";
+                                    break;   
+
+                                case '2':
+                                    $typeFact = "Factura de cliente";
+                                    break;
+
+                                
+                            } ?>
+                <h1><?php echo $typeFact; ?> <small># <?php echo $data->id_invoice; ?></small></h1>
                                     
 
             </div>
@@ -27,6 +40,30 @@
                 <div class="row">
                 
                     <div class="col-md-6">
+
+                        <dl>
+                          <dt>Forma de pago </dt>
+                          <?php 
+                            switch ($data->payment_method) {
+                                case '1':
+                                    $typePayment = "CONTADO";
+                                    break;   
+
+                                case '2':
+                                    $typePayment = "CHEQUE";
+                                    break;
+
+                                case '3':
+                                    $typePayment = "TRANSFERENCIA";
+                                    break;
+                                
+                            } ?>
+
+                            
+                                <dd> <?php echo  $typePayment; ?></dd>
+                           
+                          
+                        </dl>
 
                     <?php if ($dataClient->billing_address==1) {  ?>
                         <address>
