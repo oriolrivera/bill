@@ -62,6 +62,12 @@ class invoice_model extends CI_Model
 		return true;
 	}#end
 
+	public function editInvoice($data=array(),$id=null){
+		$this->db->where('id_invoice', $id);
+		$this->db->update('invoice', $data); 
+		return true;
+	}#end
+
 
 	public function delete(){
 		$idsToDelete=$_POST["delete"];

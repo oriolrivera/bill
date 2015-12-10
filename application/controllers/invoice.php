@@ -13,7 +13,7 @@ class Invoice extends CI_Controller {
 
         $results=$this->invoice_model->getManagerInvoices();
         $this->layout->setTitle("Gestor Facturas");
-    	$this->layout->view("invoices",compact('results'));
+    	  $this->layout->view("invoices",compact('results'));
     }
 
      public function newinvoice(){
@@ -116,6 +116,33 @@ class Invoice extends CI_Controller {
       $resultsClient=$this->client_model->getClients();
 
       if (sizeof($results)==0) { show_404();}
+
+        if($this->input->post())
+          {
+
+            $save=array(
+
+               "client"=>$this->input->post("client",true),
+               "date_service"=>date("Y-m-d",strtotime($this->input->post("fecha",true))), 
+               "hour"=>$this->input->post("hora",true), 
+               "country"=>$this->input->post("codpais",true), 
+               "province"=>$this->input->post("provincia",true), 
+               "city"=>$this->input->post("ciudad",true),
+               "zip_code"=>$this->input->post("codpostal",true), 
+               "address"=>$this->input->post("direccion",true), 
+               "observation"=>$this->input->post("observaciones",true), 
+               "type"=>$this->input->post("tipo",true), 
+               "status"=>$this->input->post("status",true), 
+               "payment_method"=>$this->input->post("forma_pago",true), 
+               "updated_at"=>date("Y-m-d H:i:s"), 
+
+            );
+
+           $this->invoice_model->editInvoice($save,$id);
+
+              $this->session->set_flashdata("mensaje","<div class='alert alert-success' role='alert'><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>Registro editado con éxito.</div>");
+              redirect(base_url()."invoice/editinvoice/".$id."/");
+          }#end post
 
       $this->layout->setTitle("Editar Factura");
       $this->layout->view("editinvoice", compact('results','data','dataClient','resultsClient'));
