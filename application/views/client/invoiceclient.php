@@ -37,7 +37,7 @@
   </div>
   <br><br>
   <div class="panel panel-default">
-                    <div class="panel-heading">Gestor Facturas</div>
+                    <div class="panel-heading">Gestor Facturas Cliente</div>
                     <div class="panel-body">
                     <form action="" method="post" name="form" id="form">
                         <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="basic-datatable">

@@ -44,6 +44,22 @@ $config = array(
         
         ),    
 
+                  /**
+     * add users system
+     */
+    'addusersystem'
+        => array
+        (
+            
+            array('field' => 'name','label' => 'Nombre','rules' => 'required|is_string|trim|xss_clean|max_length[100]'),
+            array('field' => 'usergroup','label' => 'Selecione grupo de usuario','rules' => 'required|is_string|trim|xss_clean|max_length[100]'),
+            array('field' => 'username','label' => 'Login','rules' => 'required|is_string|trim|xss_clean|max_length[100]'),
+            array('field' => 'password','label' => 'Contraseña','rules' => 'required|is_string|trim|xss_clean|max_length[100]'),
+            array('field' => 'confirmpassword','label' => 'Confirmar Contraseña','rules' => 'required|is_string|trim|xss_clean|max_length[100]'),
+           
+        
+        ),
+
 
          /**
      * update profile admin

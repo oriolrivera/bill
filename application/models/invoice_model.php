@@ -9,11 +9,22 @@ class invoice_model extends CI_Model
 	public function getManagerInvoices(){
 		
 		$query=$this->db
-			->select("`id_invoice`,`client`,`observation`,`atotal`,`date_added`,`date_service`")
+			->select("`id_invoice`,`client`,`atotal`,status,`date_added`,`date_service`")
 			->from("invoice")
 			->order_by("id_invoice","desc")
 			->get();
 			//echo $this->db->last_query();exit;
+			return $query->result();
+	}#end
+
+	public function getManagerInvoicesForClient($id=null){
+		
+		$query=$this->db
+			->select("`id_invoice`,`client`,`atotal`,status,`date_added`,`date_service`")
+			->from("invoice")
+			->order_by("id_invoice","desc")
+			->where(array("client"=>$id))
+			->get();
 			return $query->result();
 	}#end
 
@@ -22,7 +33,7 @@ class invoice_model extends CI_Model
 		$query=$this->db
 			->select("`id_invoice`,`client`,`date_service`,`hour`,`country`,`province`,
 				`city`,`zip_code`,`address`,`observation`,`aneto`,`aiva`,`atotal`,
-				`type`,`payment_method`,`date_added`")
+				`type`,`payment_method`,status,`date_added`")
 			->from("invoice")
 			->where(array("id_invoice"=>$id))
 			->get();

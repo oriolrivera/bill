@@ -36,6 +36,24 @@
    <div class="container-fluid">
       <div class="row">
          <div class="col-sm-8">
+
+         <div class="form-group">
+            <h2>
+            Estado:
+            <small>
+             <?php if ($data->status==1) {
+                     ?>
+                        <b>Factura Cobrada</b>
+                     <?php
+                  }else{
+                     ?>
+                        <b>Pendiente por cobrar</b>
+                     <?php
+                     } ?>
+            </small>
+            </h2>
+          </div>
+
          <div class="col-sm-7">
 
          <div class="form-group">
@@ -43,25 +61,34 @@
             <select name="client" id="client" class="form-control" required="required">
                   <option value="">Selecciona Cliente</option>
                   <?php 
-                     foreach ($results as $result) {
+                     foreach ($resultsClient as $resultc) {
+                        if ($data->client==$resultc->id) {
                      ?>  
-                  <option value="<?php echo $result->id; ?>"><?php echo $result->name; ?></option>
-                  <?php } ?>
+                  <option value="<?php echo $resultc->id; ?>" selected="selected"><?php echo $resultc->name; ?></option>
+                  <?php }else{
+                     ?>
+                     <option value="<?php echo $resultc->id; ?>"><?php echo $resultc->name; ?></option>
+                     <?php
+                  }
+
+                  } ?>
             </select>
           </div>
+
+          
            
          </div>
          </div>
          <div class="col-sm-2">
             <div class="form-group">
                Fecha del servicio:
-               <input type="text" name="fecha" class="form-control datepicker" value="<?php echo date("d-m-Y"); ?>" autocomplete="off">
+               <input type="text" name="fecha" class="form-control datepicker" value="<?php echo date("d-m-Y",strtotime($data->date_service)) ?>" autocomplete="off">
             </div>
          </div>
          <div class="col-sm-2">
             <div class="form-group">
                Hora:
-               <input type="text" name="hora" class="form-control" value="<?php echo date("H:i:s"); ?>" autocomplete="off">
+               <input type="text" name="hora" class="form-control" value="<?php echo date("H:i:s",strtotime($data->hour)) ?>" autocomplete="off">
             </div>
          </div>
       </div>
@@ -86,52 +113,54 @@
       <div class="tab-content">
          <div role="tabpanel" class="tab-pane active" id="lineas">
             <div class="table-responsive">
-               <table class="table table-condensed">
-                  <thead>
-                     <tr>
-                        <th class="text-left" width="180">Referencia</th>
-                        <th class="text-left">Descripción</th>
-                        <th class="text-right" width="90">Cantidad</th>
-                        <th width="60"></th>
-                        <th class="text-right" width="110">Precio</th>
-                        <th class="text-right" width="90">Dto. %</th>
-                        <th class="text-right" width="130">Neto</th>
-                        <th class="text-right" width="115">ITBIS</th>
-                        <th class="text-right recargo" width="115" style="display: none;">RE %</th>
-                        <th class="text-right irpf" width="115" style="display: none;">IRPF %</th>
-                        <th class="text-right" width="140">Total</th>
-                     </tr>
-                  </thead>
-                  <tbody id="lineas_albaran"></tbody>
-                  <tbody>
-                     <tr class="">
-                        <td>
-                      
-                             <button class="btn btn-green" type="button" id="i_new_line"><i class="fa fa-search-plus"></i> Buscar para añadir</button>
-                        </td>
-                      
-                        <td colspan="4" class="text-right">Totales:</td>
-                        <td>  
-                           <div id="aneto" class="form-control text-right" style="font-weight: bold;width:100px">0.00</div>
-                           <input type="hidden" name="aneto_input" id='aneto_input'>
-                        </td>
-                        <td>
-                           <div id="aiva" class="form-control text-right" style="font-weight: bold;">0.00</div>
-                           <input type="hidden" name="aiva_input" id='aiva_input'>
-                        </td>
-                        <td class="recargo" style="display: none;">
-                           <div id="are" class="form-control text-right" style="font-weight: bold;">0.00</div>
-                           
-                        </td>
-                        <td class="irpf" style="display: none;">
-                           <div id="airpf" class="form-control text-right" style="font-weight: bold;">-0.00</div>
-                        </td>
-                        <td>
-                           <input type="text" name="atotal" id="atotal" class="form-control text-right" style="font-weight: bold;" value="0" onchange="recalcular()" autocomplete="off">
-                        </td>
-                     </tr>
-                  </tbody>
-               </table>
+             <table class="table table-striped">
+                           <thead>
+                                <tr>
+                                    <th>Descripción</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio</th>
+                                    <th class="price">Dto. %</th>
+                                    <th class="total">Neto</th>
+                                    <th class="total">ITBIS</th>
+                                    <th class="total">Total</th>
+                                </tr>
+                            </thead>   
+                                
+                            <tbody>
+
+                            <?php foreach ($results as $result) {
+                             
+                            ?>
+                                <tr>
+                                    <td><?php echo $result->description ?></td>        
+                                    <td><?php echo $result->quantity ?></td>
+                                    <td><?php echo number_format($result->price,2); ?></td>
+                                    <td class="price"><?php echo number_format($result->discount,2); ?> %</td>
+                                    <td class="total"><?php echo number_format($result->neto,2); ?></td>
+                                    <td class="total"><?php echo number_format($result->itbis,2); ?> %</td>
+                                    <td class="total"><?php echo number_format($result->total,2); ?></td>
+                                </tr>
+
+                            <?php } ?>
+
+                             <tr>
+                                    <td colspan="5" class="sub_total"></td>
+                                    <td class="sub_total"><b>Total Itbis:</b></td>
+                                    <td class="sub_total">$<?php echo number_format($data->aiva,2); ?></td>
+                                </tr>
+                                
+                                <tr>
+                                    <td colspan="5" class="sub_total"></td>
+                                    <td class="sub_total"><b>Subtotal:</b></td>
+                                    <td class="sub_total">$<?php echo number_format($data->aneto,2); ?></td>
+                                </tr>
+                                <tr class="total_bar">
+                                    <td colspan="5" class="grand_total"></td>
+                                    <td class="grand_total"><b>Total:</b></td>
+                                    <td class="grand_total">$<?php echo number_format($data->atotal,2); ?></td>
+                                </tr>
+                            </tbody>
+                        </table>
             </div>
          </div>
          <div role="tabpanel" class="tab-pane" id="direccion">
@@ -140,14 +169,14 @@
                   <div class="col-sm-3">
                      <div class="form-group">
                         <a href="index.php?page=admin_paises#">País</a>:
-                     <input type="text" name="codpais" class="form-control">
+                     <input type="text" name="codpais" class="form-control" value="<?php echo $data->country ?>">
                      </div>
                   </div>
                   <div class="col-sm-3">
                      <div class="form-group">
                         <span class="text-capitalize">provincia</span>:
                         
-                        <input id="ac_provincia" class="form-control" type="text" name="provincia" value="">
+                        <input id="ac_provincia" class="form-control" type="text" name="provincia" value="<?php echo $data->province ?>">
                         
                      </div>
                   </div>
@@ -155,7 +184,7 @@
                      <div class="form-group">
                         Ciudad:
                         
-                        <input class="form-control" type="text" name="ciudad" value="">
+                        <input class="form-control" type="text" name="ciudad" value="<?php echo $data->city ?>">
                         
                      </div>
                   </div>
@@ -163,7 +192,7 @@
                      <div class="form-group">
                         Código Postal:
                         
-                        <input class="form-control" type="text" name="codpostal" value="">
+                        <input class="form-control" type="text" name="codpostal" value="<?php echo $data->zip_code ?>">
                         
                      </div>
                   </div>
@@ -171,7 +200,7 @@
                      <div class="form-group">
                         Dirección:
                         
-                        <input class="form-control" type="text" name="direccion" value="asd" autocomplete="off">
+                        <input class="form-control" type="text" name="direccion" value="<?php echo $data->address ?>">
                         
                      </div>
                   </div>
@@ -214,27 +243,96 @@
            
             </div>
             <div class="modal-body">
-               
-               <div class="radio">
-                  <label>
-                     <input type="radio" name="tipo" value="1">
-                     Cotización
-                  </label>
-               </div>
-               
-               <div class="radio">
-                  <label>
-                     <input type="radio" name="tipo" value="2" checked="checked">
-                     Factura de cliente
-                  </label>
-               </div>
+               <?php 
+                     switch ($data->type) {
+                        case '1':
+                           ?>
+                               <div class="radio">
+                                 <label>
+                                    <input type="radio" name="tipo" value="1" checked="checked">
+                                    Cotización
+                                 </label>
+                              </div>
+                              
+                              <div class="radio">
+                                 <label>
+                                    <input type="radio" name="tipo" value="2">
+                                    Factura de cliente
+                                 </label>
+                              </div>
+                           <?php
+                           break;
+
+                            case '2':
+                           ?>
+                               <div class="radio">
+                                 <label>
+                                    <input type="radio" name="tipo" value="1">
+                                    Cotización
+                                 </label>
+                              </div>
+                              
+                              <div class="radio">
+                                 <label>
+                                    <input type="radio" name="tipo" value="2" checked="checked">
+                                    Factura de cliente
+                                 </label>
+                              </div>
+                           <?php
+                           break;
+                        
+                     }
+                ?>
+              
             
                <div class="form-group">
                   <span>Forma de pago</span>:
                   <select name="forma_pago" class="form-control">
-                     <option value="1" selected="">CONTADO</option>
-                     <option value="2">CHEQUE</option>
-                     <option value="3">TRANSFERENCIA</option>
+                  <?php 
+                     switch ($data->payment_method) {
+                        case '1':
+                           ?>
+                           <option value="1" selected="">CONTADO</option>
+                           <option value="2">CHEQUE</option>
+                           <option value="3">TRANSFERENCIA</option>
+                  <?php
+                        break;
+
+                        case '2':
+                           ?>
+                           <option value="1">CONTADO</option>
+                           <option value="2" selected="">CHEQUE</option>
+                           <option value="3">TRANSFERENCIA</option>
+                  <?php
+                        break;
+
+                        case '3':
+                           ?>
+                           <option value="1">CONTADO</option>
+                           <option value="2">CHEQUE</option>
+                           <option value="3" selected="">TRANSFERENCIA</option>
+                  <?php
+                        break;
+                     }
+                ?>
+                  </select>
+               </div>
+
+               <div class="form-group">
+                  <span>Estado</span>:
+                  <select name="status" class="form-control">
+                  <?php if ($data->status==1) {
+                     ?>
+                        <option value="1" selected="">Factura Cobrada</option>
+                        <option value="2">Pendiente por cobrar</option>
+                     <?php
+                  }else{
+                     ?>
+                        <option value="1">Factura Cobrada</option>
+                        <option value="2" selected="">Pendiente por cobrar</option>
+                     <?php
+                     } ?>
+                     
                   </select>
                </div>
             </div>

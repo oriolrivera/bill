@@ -154,6 +154,15 @@ class Client extends CI_Controller {
     	$this->layout->view("editclient",compact('result'));
     }#end
 
+    public function invoiceclient($id=null){
+		if (!$id) {show_404();}
+			$results=$this->invoice_model->getManagerInvoicesForClient($id);
+		if (sizeof($results)==0) { show_404();}
+
+    	$this->layout->setTitle("Facturas de Cliente");
+    	$this->layout->view("invoiceclient",compact('results'));
+    }#end
+
 
 
     public function delete(){

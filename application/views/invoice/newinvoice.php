@@ -97,8 +97,6 @@
                         <th class="text-right" width="90">Dto. %</th>
                         <th class="text-right" width="130">Neto</th>
                         <th class="text-right" width="115">ITBIS</th>
-                        <th class="text-right recargo" width="115" style="display: none;">RE %</th>
-                        <th class="text-right irpf" width="115" style="display: none;">IRPF %</th>
                         <th class="text-right" width="140">Total</th>
                      </tr>
                   </thead>
@@ -235,6 +233,14 @@
                      <option value="1" selected="">CONTADO</option>
                      <option value="2">CHEQUE</option>
                      <option value="3">TRANSFERENCIA</option>
+                  </select>
+               </div>
+
+               <div class="form-group">
+                  <span>Estado</span>:
+                  <select name="status" class="form-control">
+                     <option value="1" selected="">Factura Cobrada</option>
+                     <option value="2">Pendiente por cobrar</option>
                   </select>
                </div>
             </div>

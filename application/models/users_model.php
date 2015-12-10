@@ -20,7 +20,7 @@ class users_model extends CI_Model
 			->get();
 			//echo $this->db->last_query();exit;
 			return $query->row();
-			#SELECT `id`,`name`,`user`,`password`,`status`,`last_login` FROM `users` WHERE `id` = 1 and `status` =1 
+			 
 	}
 
 	public function getDataProfile($id){

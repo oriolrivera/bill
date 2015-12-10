@@ -59,8 +59,32 @@
 	<aside class="left-panel">
     		
             <div class="user text-center">
-                  <img src="<?php echo base_url(); ?>public/assets/images/avtar/<?php echo $this->session->userdata('image'); ?>" class="img-circle" alt="<?php echo $this->session->userdata('name'); ?>">
+
+                <?php if ($this->session->userdata('image')!="") {
+                  ?>
+                    <img src="<?php echo base_url(); ?>public/assets/images/avtar/<?php echo $this->session->userdata('image'); ?>" class="img-circle" alt="<?php echo $this->session->userdata('name'); ?>">
+                  <?php
+                }else{
+                  ?>
+                    <img src="<?php echo base_url(); ?>public/assets/images/avtar/no_image.jpg" class="img-circle" alt="<?php echo $this->session->userdata('name'); ?>">
+                  <?php
+                  } ?>
+                  
+
                   <h4 class="user-name"><?php echo $this->session->userdata('name'); ?></h4>
+
+                  <div class="dropdown user-login">
+                  <button class="btn btn-xs dropdown-toggle btn-rounded" type="button">
+                    <i class="fa fa-circle status-icon available"></i> 
+                    <?php if ($this->session->userdata('role')==1) {
+                      echo "Administrador";
+                    }else{
+                      echo "Empleado";
+                      } ?>
+                    
+                  </button>
+                
+                  </div>
                   
            
             </div>
@@ -77,7 +101,7 @@
                       <ul class="list-unstyled">
                           <li><a href="<?php echo base_url(); ?>client/clients">Clientes</a></li>
                           <li><a href="<?php echo base_url(); ?>client/addclient">Crear Cliente</a></li>
-                          <li><a href="#">Presupuesto a Clientes</a></li>
+                          
                           
                         </ul>
                     </li>
@@ -92,11 +116,12 @@
                       <ul class="list-unstyled">
                           <li><a href="<?php echo base_url(); ?>invoice/invoices">Facturas</a></li>
                           <li><a href="<?php echo base_url(); ?>invoice/newinvoice">Crear Factura</a></li>
-                          <li><a href="#">Factura Pendiente por pagar</a></li>
+                          <li><a href="#">Factura Pendiente por cobrar</a></li>
                       
                         </ul>
                   </li>
-
+                  <?php if ($this->session->userdata('role')==1) { ?>
+       
                     <li class="has-submenu"><a href="#"><i class="fa fa-users"></i> <span class="nav-label">Gestor Usuarios</span></a>
                     	<ul class="list-unstyled">
                           <li><a href="<?php echo base_url(); ?>users/managerusersystem">Usuarios</a></li>
@@ -104,6 +129,7 @@
                           
                         </ul>
                     </li>
+                  <?php   } ?>
 
 
                  

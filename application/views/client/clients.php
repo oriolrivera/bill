@@ -50,7 +50,7 @@
 			                     <th class="text-left">email</th>
 			                     <th class="text-left">Teléfono</th>
 			                     <th class="text-left">Observaciones</th>
-			                     <th class="text-right">Editar</th>
+			                     <th class="text-right">Opciones</th>
 			                  </tr>
                                 
                             </thead>
@@ -66,7 +66,10 @@
 	                                    <td><?php echo $result->email; ?></td>
 	                                    <td><?php echo $result->phone_one; ?></td>
 	                                    <td class="center"><?php echo $result->observation; ?></td>
-	                                    <td class="center"><a href="<?php echo base_url(); ?>client/editclient/<?php echo $result->id; ?>" class="btn btn-info btn-circle btn-flat"><i class="fa fa-pencil-square-o"></i></a></td>
+	                                    <td class="center">
+                                        <a href="<?php echo base_url(); ?>client/invoiceclient/<?php echo $result->id; ?>" class="btn btn-warning btn-flat" title="Facturas de cliente"><i class="fa  fa-file-text"></i></a>
+                                        <a href="<?php echo base_url(); ?>client/editclient/<?php echo $result->id; ?>" class="btn btn-info btn-circle btn-flat" title="Editar"><i class="fa fa-pencil-square-o"></i></a>
+                                      </td>
 	                                </tr>
                                 <?php } ?>
                             </tbody>
